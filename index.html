@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DarkroomJS</title>
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/page.css">
+  <link rel="stylesheet" href="./assets/css/webfont.css">
+  <link rel="stylesheet" href="./assets/css/darkroom.css">
+</head>
+<body>
+  <div class="container">
+    <h1>DarkroomJS</h1>
+    <img src="./images/batcat.png" alt="BatCat" id="target">
+  </div>
+
+  <script src="./assets/js/vendor/jquery.js"></script>
+  <script src="./assets/js/vendor/fabric.js"></script>
+  <script src="./assets/js/darkroom.js"></script>
+  <script>
+    var dkrm = new Darkroom(document.getElementById('target'));
+  </script>
+</body>
+</html>
