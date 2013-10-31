@@ -1,3 +1,10 @@
+/*
+  TODO
+  - option min x:y (ex: 40x40)
+  - option scale w:h (ex: 16:9)
+  - fix depassement when scaling
+  - fix mouse to the left/up
+ */
 ;(function(window, document, fabric) {
 
   var CropZone = fabric.util.createClass(fabric.Rect, {
@@ -31,6 +38,7 @@
         hide: true
       });
 
+      // Buttons click
       this.cropButton.addEventListener('click', this.toggleCrop.bind(this));
       this.okButton.addEventListener('click', this.cropCurrentZone.bind(this));
       this.cancelButton.addEventListener('click', this.releaseFocus.bind(this));
