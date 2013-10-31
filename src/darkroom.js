@@ -54,18 +54,20 @@ if (window.module !== undefined) {
       image: 'help',
       type: 'default',
       group: 'default',
-      hide: false
+      hide: false,
+      disabled: false
     };
 
     options = extend(options, defaults);
 
-    var button = document.createElement('span');
+    var button = document.createElement('button');
     button.className = 'darkroom-button darkroom-button-' + options.type;
     button.innerHTML = '<i class="icon-' + options.image + '"></i>';
     this.element.appendChild(button);
 
     var button = new Button(button);
     button.hide(options.hide);
+    button.disable(options.disabled);
 
     return button;
   }
@@ -89,6 +91,9 @@ if (window.module !== undefined) {
       else
         this.element.className = this.element.className.replace(/darkroom-button-hidden/, '');
     },
+    disable: function(value) {
+      this.element.disabled = (value) ? true : false;
+    }
   };
 
 
@@ -100,7 +105,15 @@ if (window.module !== undefined) {
       plugins: {}
     },
 
+    addEventListener: function(eventName, callback) {
+      this.canvas.getElement().addEventListener(eventName, callback);
+    },
+    dispatchEvent: function(event) {
+      this.canvas.getElement().dispatchEvent(event);
+    },
+
     init: function(element, options) {
+      var _this = this;
       this.options = extend(options, this.defaults);
 
       if (typeof element === 'string')
@@ -110,11 +123,18 @@ if (window.module !== undefined) {
 
       var plugins = window.DarkroomPlugins;
 
-      this
-        .initDOM(element)
-        .initImage(element)
-        .initPlugins(plugins)
-      ;
+      var image = new Image();
+
+      image.onload = function() {
+        _this
+          .initDOM(element)
+          .initImage(element)
+          .initPlugins(plugins)
+        ;
+      }
+
+      image.crossOrigin = 'anonymous';
+      image.src = element.src;
     },
 
     initDOM: function(element) {

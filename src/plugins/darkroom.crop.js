@@ -3,7 +3,8 @@
   - option min x:y (ex: 40x40)
   - option scale w:h (ex: 16:9)
   - fix depassement when scaling
-  - fix mouse to the left/up
+  - fix mouse move to the left/up
+  - add crop zone layout
  */
 ;(function(window, document, fabric) {
 
@@ -182,7 +183,8 @@
         return;
 
       var _this = this;
-      var canvas = this.darkroom.canvas;
+      var darkroom = this.darkroom;
+      var canvas = darkroom.canvas;
 
       // Hide crop rectangle to avoid snapshot it with the image
       this.cropZone.visible = false;
@@ -222,6 +224,8 @@
         _this.darkroom.image.remove();
         _this.darkroom.image = imgInstance;
         canvas.add(imgInstance);
+
+        darkroom.dispatchEvent(new Event('image:change'));
       };
 
       image.src = canvas.toDataURL({

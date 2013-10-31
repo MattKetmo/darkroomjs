@@ -36,7 +36,8 @@
     rotate: function rotate(angle) {
       var _this = this;
 
-      var canvas = this.darkroom.canvas;
+      var darkroom = this.darkroom;
+      var canvas = darkroom.canvas;
 
       // Snapshot current image
       var image = new Image();
@@ -73,6 +74,8 @@
         _this.darkroom.image.remove();
         _this.darkroom.image = imgInstance;
         canvas.add(imgInstance);
+
+        darkroom.dispatchEvent(new Event('image:change'));
       };
 
       image.src = canvas.toDataURL();

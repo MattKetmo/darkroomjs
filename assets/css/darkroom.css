@@ -60,6 +60,14 @@ ul.darkroom-toolbar-actions li.darkroom-button-group:last-child {
 .darkroom-button.darkroom-button-hidden {
   display: none;
 }
+.darkroom-button:disabled {
+  color: #666;
+}
+.darkroom-button:disabled:hover {
+  cursor: default;
+  /*cursor: not-allowed;*/
+  background: transparent;
+}
 
 .darkroom-button.darkroom-button-success {
   color: #99cc00;
