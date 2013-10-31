@@ -130,21 +130,15 @@ if (window.module !== undefined) {
       canvasContainer.appendChild(canvas);
 
       // Create container element
-      var container = document.createElement('div');
-      container.className = 'darkroom-container';
+      this.container = document.createElement('div');
+      this.container.className = 'darkroom-container';
 
       // Assemble elements
-      container.appendChild(toolbar);
-      container.appendChild(canvasContainer);
+      this.container.appendChild(toolbar);
+      this.container.appendChild(canvasContainer);
 
-      // Insert container after original image
-      if (element.nextSibling) {
-        element.parentNode.insertBefore(container, element.nextSibling);
-      } else {
-        element.parentNode.appendChild(container);
-      }
-      // Then remove original image
-      element.parentNode.removeChild(element);
+      // Replace image with new DOM
+      element.parentNode.replaceChild(this.container, element);
 
       // Save elements
       this.toolbar = new Toolbar(toolbar);
@@ -192,6 +186,21 @@ if (window.module !== undefined) {
 
     getPlugin: function(name) {
       return this.plugins[name];
+    },
+
+    selfDestroy: function() {
+      var container = this.container;
+
+      var image = new Image();
+      image.onload = function() {
+        container.parentNode.replaceChild(image, container);
+      }
+
+      image.src = this.canvas.toDataURL();
+
+      // TODO
+      // - destroy plugins
+      // - delete canvas
     }
 
   };
