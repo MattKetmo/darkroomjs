@@ -4,15 +4,29 @@
 
 .darkroom-toolbar {
   position: absolute;
-  top: 0;
+  top: -45px;
   left: 0;
   background: #444;
   height: 40px;
   display: inline-block;
+  z-index: 99;
+  border-radius: 2px;
+}
+.darkroom-toolbar:before {
+  content:"";
+  position: absolute;
+  bottom: -7px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #444;
 }
 
 ul.darkroom-toolbar-actions {
   list-style: none;
+  padding: 0 5px;
 }
 .darkroom-toolbar-actions li {
   display: inline-block;
@@ -31,6 +45,7 @@ ul.darkroom-toolbar-actions {
   padding: 5px;
   padding-bottom: 0;
   height: 40px;
+  box-sizing: border-box;
 }
 .darkroom-button.darkroom-button-active {
   color: #33b5e5;
@@ -60,7 +75,7 @@ ul.darkroom-toolbar-actions {
 
 .darkroom-image-container {
   position: absolute;
-  top: 40px;
+  top: 0;
   left: 0;
 }
 .darkroom-image-container img {

@@ -1,18 +1,18 @@
 body {
-    background-color: #f9f9f9;
-    color: #444;
+  background-color: #f9f9f9;
+  color: #444;
 }
 
 .container {
-    width: 700px;
-    margin: auto;
+  width: 700px;
+  margin: auto;
 }
 
 h1 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 42px;
-    font-weight: 100;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 30px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 42px;
+  font-weight: 100;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 50px;
 }
