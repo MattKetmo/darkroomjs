@@ -34,6 +34,13 @@ ul.darkroom-toolbar-actions {
   margin: 0;
 }
 
+ul.darkroom-toolbar-actions li.darkroom-button-group {
+  border-right: 1px solid #777;
+}
+ul.darkroom-toolbar-actions li.darkroom-button-group:last-child {
+  border-right: none;
+}
+
 .darkroom-button {
   display: inline-block;
   background: transparent;

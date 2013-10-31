@@ -11,11 +11,13 @@
       this.darkroom = darkroom;
       this.options = Darkroom.extend(options, this.defaults);
 
-      this.leftButton = darkroom.toolbar.createButton({
+      var buttonGroup = darkroom.toolbar.createButtonGroup();
+
+      this.leftButton = buttonGroup.createButton({
         image: 'images-rotate-left'
       });
 
-      this.rightButton = darkroom.toolbar.createButton({
+      this.rightButton = buttonGroup.createButton({
         image: 'images-rotate-right'
       });
 

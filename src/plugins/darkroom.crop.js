@@ -21,18 +21,21 @@
     },
 
     init: function InitDarkroomRotatePlugin(darkroom, options) {
+
       this.darkroom = darkroom;
       this.options = Darkroom.extend(options, this.defaults);
 
-      this.cropButton = darkroom.toolbar.createButton({
+      var buttonGroup = darkroom.toolbar.createButtonGroup();
+
+      this.cropButton = buttonGroup.createButton({
         image: 'images-crop'
       });
-      this.okButton = darkroom.toolbar.createButton({
+      this.okButton = buttonGroup.createButton({
         image: 'navigation-accept',
         type: 'success',
         hide: true
       });
-      this.cancelButton = darkroom.toolbar.createButton({
+      this.cancelButton = buttonGroup.createButton({
         image: 'navigation-cancel',
         type: 'danger',
         hide: true

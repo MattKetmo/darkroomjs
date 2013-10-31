@@ -36,7 +36,20 @@ if (window.module !== undefined) {
     this.actionsElement = element.querySelector('.darkroom-toolbar-actions');
   }
 
-  Toolbar.prototype.createButton = function(options) {
+  Toolbar.prototype.createButtonGroup = function(options) {
+    var buttonGroup = document.createElement('li');
+    buttonGroup.className = 'darkroom-button-group';
+    //buttonGroup.innerHTML = '<ul></ul>';
+    this.actionsElement.appendChild(buttonGroup);
+
+    return new ButtonGroup(buttonGroup);
+  };
+
+  function ButtonGroup(element) {
+    this.element = element;
+  }
+
+  ButtonGroup.prototype.createButton = function(options) {
     var defaults = {
       image: 'help',
       type: 'default',
@@ -46,14 +59,12 @@ if (window.module !== undefined) {
 
     options = extend(options, defaults);
 
-    var action = document.createElement('li');
-    action.className = 'darkroom-toolbar-action';
-    action.innerHTML = '<span class="darkroom-button darkroom-button-' + options.type + '">' +
-      '<i class="icon-' + options.image + '"></i>' +
-      '</span>';
-    this.actionsElement.appendChild(action);
+    var button = document.createElement('span');
+    button.className = 'darkroom-button darkroom-button-' + options.type;
+    button.innerHTML = '<i class="icon-' + options.image + '"></i>';
+    this.element.appendChild(button);
 
-    var button = new Button(action.querySelector('.darkroom-button'));
+    var button = new Button(button);
     button.hide(options.hide);
 
     return button;
