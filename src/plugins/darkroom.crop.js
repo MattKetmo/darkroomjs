@@ -11,7 +11,7 @@
   });
 
   var DarkroomCropPlugin = {
-    name: 'rotate',
+    name: 'crop',
 
     // Boolean to check crop zone is being defined
     isZoning: false,

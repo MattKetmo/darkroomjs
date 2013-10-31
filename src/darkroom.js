@@ -170,10 +170,17 @@ if (window.module !== undefined) {
     },
 
     initPlugins: function(plugins) {
+      this.plugins = {};
+
       for (var i = 0, n = plugins.length; i < n; i++) {
         var plugin = plugins[i];
         plugin.init(this, this.options.plugins[plugin.name]);
+        this.plugins[plugin.name] = plugin;
       }
+    },
+
+    getPlugin: function(name) {
+      return this.plugins[name];
     }
 
   };
