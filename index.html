@@ -14,19 +14,14 @@
     <img src="./images/batcat.png" alt="BatCat" id="target">
   </div>
 
-  <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/fabric.js"></script>
-  <!--
-  <script src="./assets/js/darkroom.js"></script>
-  -->
   <script src="./src/darkroom.js"></script>
   <script src="./src/plugins/darkroom.crop.js"></script>
   <script src="./src/plugins/darkroom.rotate.js"></script>
   <script src="./src/plugins/darkroom.destroy.js"></script>
   <script>
     var dkrm = new Darkroom('#target', {});
-    dkrm.getPlugin('crop').toggleCrop();
-    //var dkrm = new Darkroom(document.getElementById('target'));
+    //dkrm.getPlugin('crop').toggleCrop();
   </script>
 </body>
 </html>
