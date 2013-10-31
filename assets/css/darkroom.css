@@ -32,9 +32,13 @@ ul.darkroom-toolbar-actions {
   padding-bottom: 0;
   height: 40px;
 }
-.darkroom-button.active {
+.darkroom-button.darkroom-button-active {
   color: #33b5e5;
 }
+.darkroom-button.darkroom-button-hidden {
+  display: none;
+}
+
 .darkroom-button.darkroom-button-success {
   color: #99cc00;
 }
@@ -44,9 +48,7 @@ ul.darkroom-toolbar-actions {
 .darkroom-button.darkroom-button-danger {
   color: #FF4444;
 }
-.darkroom-button.darkroom-button-hidden {
-  display: none;
-}
+
 .darkroom-button:hover {
   cursor: pointer;
   background: #555;

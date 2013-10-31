@@ -46,24 +46,40 @@ if (window.module !== undefined) {
 
     options = extend(options, defaults);
 
-    var button = document.createElement('li');
-    button.className = 'darkroom-toolbar-action';
-    button.innerHTML = '<span class="darkroom-button darkroom-button-' + options.type + '">' +
+    var action = document.createElement('li');
+    action.className = 'darkroom-toolbar-action';
+    action.innerHTML = '<span class="darkroom-button darkroom-button-' + options.type + '">' +
       '<i class="icon-' + options.image + '"></i>' +
       '</span>';
-    this.actionsElement.appendChild(button);
+    this.actionsElement.appendChild(action);
 
-    button = button.querySelector('.darkroom-button');
-    if (options.hide) {
-      button.className += ' darkroom-button-hidden';
-    }
+    var button = new Button(action.querySelector('.darkroom-button'));
+    button.hide(options.hide);
 
     return button;
   }
 
   function Button(element) {
-
+    this.element = element;
   }
+  Button.prototype = {
+    addEventListener: function(eventName, callback) {
+      this.element.addEventListener(eventName, callback);
+    },
+    active: function(value) {
+      if (value)
+        this.element.className += ' darkroom-button-active';
+      else
+        this.element.className = this.element.className.replace(/darkroom-button-active/, '');
+    },
+    hide: function(value) {
+      if (value)
+        this.element.className += ' darkroom-button-hidden';
+      else
+        this.element.className = this.element.className.replace(/darkroom-button-hidden/, '');
+    },
+  };
+
 
   var Canvas = fabric.util.createClass(fabric.Canvas, {
   });

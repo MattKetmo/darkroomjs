@@ -31,7 +31,9 @@
         hide: true
       });
 
-      this.cropButton.addEventListener('click', this.cropCurrentZone.bind(this));
+      this.cropButton.addEventListener('click', this.toggleCrop.bind(this));
+      this.okButton.addEventListener('click', this.cropCurrentZone.bind(this));
+      this.cancelButton.addEventListener('click', this.releaseFocus.bind(this));
 
       // Canvas events
       darkroom.canvas.on('mouse:down', this.onMouseDown.bind(this));
@@ -152,9 +154,15 @@
       this.isZoning = false;
     },
 
+    toggleCrop: function() {
+      if (!this.hasFocus())
+        this.requireFocus();
+      else
+        this.releaseFocus();
+    },
+
     cropCurrentZone: function() {
       if (!this.hasFocus()) {
-        this.requireFocus();
         return;
       }
 
@@ -239,7 +247,9 @@
 
       this.darkroom.canvas.add(this.cropZone);
 
-      this.cropButton.className += ' active';
+      this.cropButton.active(true);
+      this.okButton.hide(false);
+      this.cancelButton.hide(false);
     },
 
     // Remove the crop zone
@@ -247,7 +257,9 @@
       this.cropZone.remove();
       this.cropZone = undefined;
 
-      this.cropButton.className = this.cropButton.className.replace(/active/, '');
+      this.cropButton.active(false);
+      this.okButton.hide(true);
+      this.cancelButton.hide(true);
     }
   }
 
