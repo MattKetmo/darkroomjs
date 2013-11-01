@@ -81,15 +81,15 @@ if (window.module !== undefined) {
     },
     active: function(value) {
       if (value)
-        this.element.className += ' darkroom-button-active';
+        this.element.classList.add('darkroom-button-active');
       else
-        this.element.className = this.element.className.replace(/darkroom-button-active/, '');
+        this.element.classList.remove('darkroom-button-active');
     },
     hide: function(value) {
       if (value)
-        this.element.className += ' darkroom-button-hidden';
+        this.element.classList.add('darkroom-button-hidden');
       else
-        this.element.className = this.element.className.replace(/darkroom-button-hidden/, '');
+        this.element.classList.remove('darkroom-button-hidden');
     },
     disable: function(value) {
       this.element.disabled = (value) ? true : false;
