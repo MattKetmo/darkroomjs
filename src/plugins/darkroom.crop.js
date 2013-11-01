@@ -261,6 +261,7 @@
       });
 
       this.darkroom.canvas.add(this.cropZone);
+      this.darkroom.canvas.defaultCursor = 'crosshair';
 
       this.cropButton.active(true);
       this.okButton.hide(false);
@@ -275,6 +276,8 @@
       this.cropButton.active(false);
       this.okButton.hide(true);
       this.cancelButton.hide(true);
+
+      this.darkroom.canvas.defaultCursor = 'default';
     }
   }
 
