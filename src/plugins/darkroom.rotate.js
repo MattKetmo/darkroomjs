@@ -38,15 +38,6 @@
 
       var darkroom = this.darkroom;
       var canvas = darkroom.canvas;
-      var centerPoint = canvas.getCenter();
-
-      // Clear active objects
-      var objects = canvas.getObjects();
-      for (var i = 0, n = objects.length; i < n; i++) {
-        var obj = objects[i];
-        if (obj !== darkroom.image)
-          obj.remove();
-      }
 
       // Snapshot current image
       var image = new Image();

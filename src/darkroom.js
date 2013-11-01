@@ -222,14 +222,6 @@ if (window.module !== undefined) {
     selfDestroy: function() {
       var container = this.container;
 
-      // Clear active objects
-      var objects = this.canvas.getObjects();
-      for (var i = 0, n = objects.length; i < n; i++) {
-        var obj = objects[i];
-        if (obj !== this.image)
-          obj.remove();
-      }
-
       var image = new Image();
       image.onload = function() {
         container.parentNode.replaceChild(image, container);
