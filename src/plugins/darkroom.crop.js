@@ -17,6 +17,9 @@
 
       var borderOffset = 0.17;
 
+      // Set original scale
+      ctx.scale(1/this.scaleX, 1/this.scaleY);
+
       // Upper rect
       ctx.fillRect(
         -this.getWidth() / 2 - this.getLeft(),
@@ -48,6 +51,9 @@
         canvas.width,
         canvas.height - this.getTop() - this.getHeight() + borderOffset
       );
+
+      // Reset scale
+      ctx.scale(this.scaleX, this.scaleY);
     }
   });
 
