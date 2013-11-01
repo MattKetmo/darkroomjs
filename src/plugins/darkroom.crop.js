@@ -113,6 +113,19 @@
       darkroom.canvas.on('mouse:up', this.onMouseUp.bind(this));
       darkroom.canvas.on('object:moving', this.onObjectMoving.bind(this));
       darkroom.canvas.on('object:scaling', this.onObjectScaling.bind(this));
+      darkroom.canvas.on('object:removed', this.onObjectRemoved.bind(this));
+    },
+
+    // Release focus when crop zone is removed
+    onObjectRemoved: function(event) {
+      if (!this.hasFocus())
+        return;
+
+      var currentObject = event.target;
+      if (currentObject !== this.cropZone)
+        return;
+
+      this.releaseFocus();
     },
 
     // Avoid crop zone to go beyond the canvas edges
@@ -248,7 +261,7 @@
       if (!this.hasFocus())
         this.requireFocus();
       else
-        this.releaseFocus();
+        this.cropZone.remove();
     },
 
     cropCurrentZone: function() {
@@ -313,7 +326,7 @@
         height: this.cropZone.getHeight()
       });
 
-      this.releaseFocus();
+      this.cropZone.remove();
     },
 
     // Test wether crop zone is set
@@ -348,7 +361,7 @@
 
     // Remove the crop zone
     releaseFocus: function() {
-      this.cropZone.remove();
+      //this.cropZone.remove();
       this.cropZone = undefined;
 
       this.cropButton.active(false);
