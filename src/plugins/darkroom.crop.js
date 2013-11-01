@@ -9,6 +9,46 @@
 ;(function(window, document, fabric) {
 
   var CropZone = fabric.util.createClass(fabric.Rect, {
+    _render: function(ctx) {
+      this.callSuper('_render', ctx);
+
+      var canvas = ctx.canvas;
+      ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+
+      var borderOffset = 0.17;
+
+      // Upper rect
+      ctx.fillRect(
+        -this.getWidth() / 2 - this.getLeft(),
+        -this.getHeight() / 2 - this.getTop(),
+        canvas.width,
+        this.getTop() + borderOffset
+      );
+
+      // Left rect
+      ctx.fillRect(
+        -this.getWidth()/2 - this.getLeft(),
+        -this.getHeight()/2,
+        this.getLeft(),
+        this.getHeight()
+      );
+
+      // Right rect
+      ctx.fillRect(
+        this.getWidth()/2,
+        -this.getHeight()/2,
+        canvas.width- this.getLeft() - this.getWidth() ,
+        this.getHeight()
+      );
+
+      // Down rect
+      ctx.fillRect(
+        -this.getWidth() / 2 - this.getLeft(),
+        this.getHeight() / 2  - borderOffset,
+        canvas.width,
+        canvas.height - this.getTop() - this.getHeight() + borderOffset
+      );
+    }
   });
 
   var DarkroomCropPlugin = {
@@ -246,18 +286,18 @@
     // Create the crop zone
     requireFocus: function() {
       this.cropZone = new CropZone({
-        fill: 'black',
-        opacity: 0.1,
+        fill: 'transparent',
+        hasBorders: false,
         originX: 'left',
         originY: 'top',
         stroke: '#444',
+        strokeDashArray: [5, 5],
+        borderColor: '#444',
+        cornerColor: '#444',
+        cornerSize: 8,
+        transparentCorners: false,
         lockRotation: true,
         hasRotatingPoint: false,
-        //width: 100,
-        //height: 100,
-        borderColor: 'black',
-        cornerColor: 'black',
-        //strokeWidth: 10
       });
 
       this.darkroom.canvas.add(this.cropZone);

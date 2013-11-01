@@ -137,7 +137,7 @@ if (window.module !== undefined) {
         _this.options.init.bind(_this).call();
       }
 
-      image.crossOrigin = 'anonymous';
+      //image.crossOrigin = 'anonymous';
       image.src = element.src;
     },
 
