@@ -102,7 +102,8 @@ if (window.module !== undefined) {
 
   Darkroom.prototype = {
     defaults: {
-      plugins: {}
+      plugins: {},
+      init: function() {}
     },
 
     addEventListener: function(eventName, callback) {
@@ -131,6 +132,9 @@ if (window.module !== undefined) {
           .initImage(element)
           .initPlugins(plugins)
         ;
+
+        // Execute a custom callback after initialization
+        _this.options.init.bind(_this).call();
       }
 
       image.crossOrigin = 'anonymous';

@@ -25,8 +25,11 @@
   <script src="./src/plugins/darkroom.rotate.js"></script>
   <script src="./src/plugins/darkroom.destroy.js"></script>
   <script>
-    var dkrm = new Darkroom('#target', {});
-    //dkrm.getPlugin('crop').toggleCrop();
+    var dkrm = new Darkroom('#target', {
+      init: function() {
+        this.getPlugin('crop').toggleCrop();
+      }
+    });
   </script>
 </body>
 </html>
