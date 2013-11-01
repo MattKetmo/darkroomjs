@@ -52,6 +52,20 @@
         canvas.height - this.getTop() - this.getHeight() + borderOffset
       );
 
+      // Draw borders
+      if (ctx.setLineDash !== undefined)
+        ctx.setLineDash([5, 5]);
+      else if (ctx.mozDash !== undefined)
+        ctx.mozDash = [5, 5];
+
+      ctx.beginPath();
+      ctx.moveTo(-this.getWidth()/2, -this.getHeight()/2); // upper left
+      ctx.lineTo(this.getWidth()/2, -this.getHeight()/2); // upper right
+      ctx.lineTo(this.getWidth()/2, this.getHeight()/2); // down right
+      ctx.lineTo(-this.getWidth()/2, this.getHeight()/2); // down left
+      ctx.lineTo(-this.getWidth()/2, -this.getHeight()/2); // upper left
+      ctx.stroke();
+
       // Reset scale
       ctx.scale(this.scaleX, this.scaleY);
     }
@@ -296,9 +310,9 @@
         hasBorders: false,
         originX: 'left',
         originY: 'top',
-        stroke: '#444',
-        strokeDashArray: [5, 5],
-        borderColor: '#444',
+        //stroke: '#444',
+        //strokeDashArray: [5, 5],
+        //borderColor: '#444',
         cornerColor: '#444',
         cornerSize: 8,
         transparentCorners: false,
