@@ -1,7 +1,7 @@
 ;(function(window, document) {
 
   var DarkroomDestroyPlugin = {
-    name: 'destroy',
+    name: 'save',
 
     defaults: {
 

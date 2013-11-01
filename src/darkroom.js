@@ -203,8 +203,15 @@ if (window.module !== undefined) {
 
       for (var i = 0, n = plugins.length; i < n; i++) {
         var plugin = plugins[i];
-        plugin.init(this, this.options.plugins[plugin.name]);
+        var options = this.options.plugins[plugin.name];
+
+        // Setting false into the plugin options will disable the plugin
+        if (options === false) {
+          continue;
+        }
+
         this.plugins[plugin.name] = plugin;
+        plugin.init(this, options);
       }
     },
 
