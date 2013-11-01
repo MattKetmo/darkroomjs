@@ -226,6 +226,24 @@
       this.isZoning = false;
     },
 
+    selectZone: function(x, y, width, height) {
+      if (!this.hasFocus())
+        this.requireFocus();
+
+      this.cropZone.set({
+        'left': x,
+        'top': y,
+        'width': width,
+        'height': height
+      });
+
+      var canvas = this.darkroom.canvas;
+      canvas.bringToFront(this.cropZone);
+      this.cropZone.setCoords();
+      canvas.setActiveObject(this.cropZone);
+      canvas.calcOffset();
+    },
+
     toggleCrop: function() {
       if (!this.hasFocus())
         this.requireFocus();
