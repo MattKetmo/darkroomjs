@@ -78,7 +78,7 @@
         darkroom.dispatchEvent(new Event('image:change'));
       };
 
-      image.src = canvas.toDataURL();
+      image.src = darkroom.snapshotImage();
     }
   }
 

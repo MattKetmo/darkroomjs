@@ -227,11 +227,17 @@ if (window.module !== undefined) {
         container.parentNode.replaceChild(image, container);
       }
 
-      image.src = this.canvas.toDataURL();
+      image.src = this.snapshotImage();
 
       // TODO
       // - destroy plugins
       // - delete canvas
+    },
+
+    snapshotImage: function() {
+      this.dispatchEvent(new Event('image:clean'));
+
+      return this.canvas.toDataURL();
     }
 
   };

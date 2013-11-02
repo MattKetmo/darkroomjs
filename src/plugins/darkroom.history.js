@@ -70,7 +70,7 @@
     _snapshotImage: function() {
       var _this = this;
       var image = new Image();
-      image.src = this.darkroom.canvas.toDataURL();
+      image.src = this.darkroom.snapshotImage();
 
       this.currentImage = image;
     },
@@ -84,6 +84,8 @@
 
     // Apply image to the canvas
     _applyImage: function(image) {
+      this.darkroom.dispatchEvent(new Event('image:clean'));
+
       var canvas = this.darkroom.canvas;
 
       var imgInstance = new fabric.Image(image, {
