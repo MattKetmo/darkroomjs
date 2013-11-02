@@ -27,6 +27,7 @@
 ul.darkroom-toolbar-actions {
   list-style: none;
   padding: 0 5px;
+  margin: 0;
 }
 .darkroom-toolbar-actions li {
   display: inline-block;
