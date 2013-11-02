@@ -114,7 +114,7 @@
       darkroom.canvas.on('object:moving', this.onObjectMoving.bind(this));
       darkroom.canvas.on('object:scaling', this.onObjectScaling.bind(this));
 
-      darkroom.addEventListener('image:clean', this.releaseFocus.bind(this));
+      darkroom.addEventListener('image:change', this.releaseFocus.bind(this));
     },
 
     // Avoid crop zone to go beyond the canvas edges
@@ -265,8 +265,6 @@
       var _this = this;
       var darkroom = this.darkroom;
       var canvas = darkroom.canvas;
-
-      //this.darkroom.dispatchEvent(new CustomEvent('image:clean'));
 
       // Hide crop rectangle to avoid snapshot it with the image
       this.cropZone.visible = false;

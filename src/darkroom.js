@@ -235,9 +235,7 @@ if (window.module !== undefined) {
     },
 
     snapshotImage: function() {
-      this.dispatchEvent(new Event('image:clean'));
-
-      return this.canvas.toDataURL();
+      return this.image.toDataURL();
     }
 
   };

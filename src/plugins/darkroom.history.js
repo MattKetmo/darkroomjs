@@ -84,8 +84,6 @@
 
     // Apply image to the canvas
     _applyImage: function(image) {
-      this.darkroom.dispatchEvent(new Event('image:clean'));
-
       var canvas = this.darkroom.canvas;
 
       var imgInstance = new fabric.Image(image, {
