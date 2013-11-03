@@ -90,7 +90,6 @@ ul.darkroom-toolbar-actions li.darkroom-button-group:last-child {
 }
 
 .darkroom-image-container {
-  position: absolute;
   top: 0;
   left: 0;
 }
