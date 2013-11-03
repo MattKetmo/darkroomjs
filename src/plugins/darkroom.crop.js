@@ -13,9 +13,8 @@
       this.callSuper('_render', ctx);
 
       var canvas = ctx.canvas;
-      ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
-
       var borderOffset = 0.17;
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
 
       // Set original scale
       ctx.scale(1/this.scaleX, 1/this.scaleY);
@@ -40,7 +39,7 @@
       ctx.fillRect(
         this.getWidth()/2,
         -this.getHeight()/2,
-        canvas.width- this.getLeft() - this.getWidth() ,
+        canvas.width- this.getLeft() - this.getWidth(),
         this.getHeight()
       );
 
@@ -52,12 +51,30 @@
         canvas.height - this.getTop() - this.getHeight() + borderOffset
       );
 
-      // Draw borders
-      if (ctx.setLineDash !== undefined)
-        ctx.setLineDash([5, 5]);
-      else if (ctx.mozDash !== undefined)
-        ctx.mozDash = [5, 5];
+      var dashWidth = 7;
 
+      // Set dashed borders
+      if (ctx.setLineDash !== undefined)
+        ctx.setLineDash([dashWidth, dashWidth]);
+      else if (ctx.mozDash !== undefined)
+        ctx.mozDash = [dashWidth, dashWidth];
+
+      // First lines rendering with black
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+      this._renderBorders(ctx);
+      this._renderGrid(ctx);
+
+      // Re render lines in white
+      ctx.lineDashOffset = dashWidth;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+      this._renderBorders(ctx);
+      this._renderGrid(ctx);
+
+      // Reset scale
+      ctx.scale(this.scaleX, this.scaleY);
+    },
+
+    _renderBorders: function(ctx) {
       ctx.beginPath();
       ctx.moveTo(-this.getWidth()/2, -this.getHeight()/2); // upper left
       ctx.lineTo(this.getWidth()/2, -this.getHeight()/2); // upper right
@@ -65,9 +82,27 @@
       ctx.lineTo(-this.getWidth()/2, this.getHeight()/2); // down left
       ctx.lineTo(-this.getWidth()/2, -this.getHeight()/2); // upper left
       ctx.stroke();
+    },
 
-      // Reset scale
-      ctx.scale(this.scaleX, this.scaleY);
+    _renderGrid: function(ctx) {
+      // Vertical lines
+      ctx.beginPath();
+      ctx.moveTo(-this.getWidth()/2 + 1/3 * this.getWidth(), -this.getHeight()/2);
+      ctx.lineTo(-this.getWidth()/2 + 1/3 * this.getWidth(), this.getHeight()/2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-this.getWidth()/2 + 2/3 * this.getWidth(), -this.getHeight()/2);
+      ctx.lineTo(-this.getWidth()/2 + 2/3 * this.getWidth(), this.getHeight()/2);
+      ctx.stroke();
+      // Horizontal lines
+      ctx.beginPath();
+      ctx.moveTo(-this.getWidth()/2, -this.getHeight()/2 + 1/3 * this.getHeight());
+      ctx.lineTo(this.getWidth()/2, -this.getHeight()/2 + 1/3 * this.getHeight());
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-this.getWidth()/2, -this.getHeight()/2 + 2/3 * this.getHeight());
+      ctx.lineTo(this.getWidth()/2, -this.getHeight()/2 + 2/3 * this.getHeight());
+      ctx.stroke();
     }
   });
 
