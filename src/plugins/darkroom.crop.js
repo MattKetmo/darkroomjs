@@ -340,8 +340,6 @@
         width: this.cropZone.getWidth(),
         height: this.cropZone.getHeight()
       });
-
-      this.releaseFocus();
     },
 
     // Test wether crop zone is set
@@ -376,6 +374,9 @@
 
     // Remove the crop zone
     releaseFocus: function() {
+      if (undefined === this.cropZone)
+        return;
+
       this.cropZone.remove();
       this.cropZone = undefined;
 
