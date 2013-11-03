@@ -221,8 +221,6 @@
       canvas.discardActiveObject();
       this.cropZone.setWidth(0);
       this.cropZone.setHeight(0);
-      this.cropZone.setLeft(x);
-      this.cropZone.setTop(y);
 
       this.startX = x;
       this.startY = y;
