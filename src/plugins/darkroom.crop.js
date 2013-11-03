@@ -191,14 +191,29 @@
       var x = event.e.pageX - canvas._offset.left;
       var y = event.e.pageY - canvas._offset.top;
 
-      var canvas = this.darkroom.canvas;
-      var w = currentObject.getWidth(), h = currentObject.getHeight();
-      var maxX = canvas.getWidth() - w;
-      var maxY = canvas.getHeight() - h;
-      var maxW = canvas.getWidth() - currentObject.getLeft();
-      var maxH = canvas.getHeight() - currentObject.getTop();
+      var minX = currentObject.getLeft();
+      var minY = currentObject.getTop();
+      var maxX = currentObject.getLeft() + currentObject.getWidth();
+      var maxY = currentObject.getTop() + currentObject.getHeight();
 
-      // TODO
+      if (minX < 0 || maxX > canvas.getWidth()) {
+        var lastScaleX = this.lastScaleX || 1;
+        currentObject.setScaleX(lastScaleX);
+      }
+      if (minX < 0) {
+        currentObject.setLeft(0);
+      }
+
+      if (minY < 0 || maxY > canvas.getHeight()) {
+        var lastScaleY = this.lastScaleY || 1;
+        currentObject.setScaleY(lastScaleY);
+      }
+      if (minY < 0) {
+        currentObject.setTop(0);
+      }
+
+      this.lastScaleX = currentObject.getScaleX();
+      this.lastScaleY = currentObject.getScaleY();
     },
 
     // Init crop zone
