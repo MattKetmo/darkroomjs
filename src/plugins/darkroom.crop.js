@@ -3,8 +3,6 @@
   - option min x:y (ex: 40x40)
   - option scale w:h (ex: 16:9)
   - fix depassement when scaling
-  - fix mouse move to the left/up
-  - add crop zone layout
  */
 ;(function(window, document, fabric) {
 
@@ -109,8 +107,9 @@
   var DarkroomCropPlugin = {
     name: 'crop',
 
-    // Boolean to check crop zone is being defined
-    isZoning: false,
+    // Init point
+    startX: null,
+    startY: null,
 
     defaults: {
 
@@ -225,12 +224,13 @@
       this.cropZone.setLeft(x);
       this.cropZone.setTop(y);
 
-      this.isZoning = true;
+      this.startX = x;
+      this.startY = y;
     },
 
     // Extend crop zone
     onMouseMove: function(event) {
-      if (!this.isZoning) {
+      if (null === this.startX || null === this.startY) {
         return;
       }
 
@@ -238,20 +238,12 @@
       var x = event.e.pageX - canvas._offset.left;
       var y = event.e.pageY - canvas._offset.top;
 
-      // If mouse to out of canvas, then nothing to compute
-      if (x > canvas.getWidth() || y > canvas.getHeight()) {
-        return;
-      }
-
-      this.cropZone.width = +Math.abs(this.cropZone.left - x);
-      this.cropZone.height = +Math.abs(this.cropZone.top - y);
-
-      canvas.bringToFront(this.cropZone);
+      this._renderCropZone(this.startX, this.startY, x, y);
     },
 
     // Finish crop zone
     onMouseUp: function(event) {
-      if (!this.isZoning) {
+      if (null === this.startX || null === this.startY) {
         return;
       }
 
@@ -260,7 +252,8 @@
       canvas.setActiveObject(this.cropZone);
       canvas.calcOffset();
 
-      this.isZoning = false;
+      this.startX = null;
+      this.startY = null;
     },
 
     selectZone: function(x, y, width, height) {
@@ -393,7 +386,24 @@
       this.cancelButton.hide(true);
 
       this.darkroom.canvas.defaultCursor = 'default';
-    }
+    },
+
+    _renderCropZone: function(fromX, fromY, toX, toY) {
+      var canvas = this.darkroom.canvas;
+
+      var minX = Math.max(0, Math.min(fromX, toX));
+      var minY = Math.max(0, Math.min(fromY, toY));
+
+      var maxX = Math.min(canvas.getWidth(), Math.max(fromX, toX));
+      var maxY = Math.min(canvas.getHeight(), Math.max(fromY, toY));
+
+      this.cropZone.left = minX;
+      this.cropZone.top = minY;
+      this.cropZone.width = maxX - minX;
+      this.cropZone.height = maxY - minY;
+
+      this.darkroom.canvas.bringToFront(this.cropZone);
+    },
   }
 
   window.DarkroomPlugins.push(DarkroomCropPlugin);
