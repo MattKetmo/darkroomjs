@@ -30,12 +30,12 @@
         crop: {
           minHeight: 100,
           minWidth: 100,
-          ratio: 16/9
+          ratio: 1
         }
       },
       init: function() {
         var cropPlugin = this.getPlugin('crop');
-        //cropPlugin.selectZone(130, 40, 250, 300);
+        //cropPlugin.selectZone(130, 40, 250, 300, true);
         cropPlugin.requireFocus();
         return;
         this.addEventListener('image:change', function() {

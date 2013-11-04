@@ -267,9 +267,14 @@
       this.startY = null;
     },
 
-    selectZone: function(x, y, width, height) {
+    selectZone: function(x, y, width, height, forceDimension) {
       if (!this.hasFocus())
         this.requireFocus();
+
+      if (!forceDimension) {
+        this._renderCropZone(x, y, x+width, y+height);
+        return;
+      }
 
       this.cropZone.set({
         'left': x,
