@@ -11,13 +11,41 @@
       this.callSuper('_render', ctx);
 
       var canvas = ctx.canvas;
-      var borderOffset = 0.17;
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+      var dashWidth = 7;
 
       // Set original scale
       var flipX = this.flipX ? -1 : 1;
       var flipY = this.flipY ? -1 : 1;
-      ctx.scale(flipX/this.scaleX, flipY/this.scaleY);
+      ctx.scale(flipX / this.scaleX, flipY / this.scaleY);
+
+      // Overlay rendering
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+      this._renderOverlay(ctx);
+
+      // Set dashed borders
+      if (ctx.setLineDash !== undefined)
+        ctx.setLineDash([dashWidth, dashWidth]);
+      else if (ctx.mozDash !== undefined)
+        ctx.mozDash = [dashWidth, dashWidth];
+
+      // First lines rendering with black
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+      this._renderBorders(ctx);
+      this._renderGrid(ctx);
+
+      // Re render lines in white
+      ctx.lineDashOffset = dashWidth;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+      this._renderBorders(ctx);
+      this._renderGrid(ctx);
+
+      // Reset scale
+      ctx.scale(flipX * this.scaleX, flipY * this.scaleY);
+    },
+
+    _renderOverlay: function(ctx) {
+      var canvas = ctx.canvas;
+      var borderOffset = 0.17;
 
       // Upper rect
       ctx.fillRect(
@@ -50,28 +78,6 @@
         canvas.width,
         canvas.height - this.getTop() - this.getHeight() + borderOffset
       );
-
-      var dashWidth = 7;
-
-      // Set dashed borders
-      if (ctx.setLineDash !== undefined)
-        ctx.setLineDash([dashWidth, dashWidth]);
-      else if (ctx.mozDash !== undefined)
-        ctx.mozDash = [dashWidth, dashWidth];
-
-      // First lines rendering with black
-      ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
-      this._renderBorders(ctx);
-      this._renderGrid(ctx);
-
-      // Re render lines in white
-      ctx.lineDashOffset = dashWidth;
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
-      this._renderBorders(ctx);
-      this._renderGrid(ctx);
-
-      // Reset scale
-      ctx.scale(this.scaleX * flipX, this.scaleY * flipY);
     },
 
     _renderBorders: function(ctx) {
