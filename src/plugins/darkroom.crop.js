@@ -15,7 +15,9 @@
       ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
 
       // Set original scale
-      ctx.scale(1/this.scaleX, 1/this.scaleY);
+      var flipX = this.flipX ? -1 : 1;
+      var flipY = this.flipY ? -1 : 1;
+      ctx.scale(flipX/this.scaleX, flipY/this.scaleY);
 
       // Upper rect
       ctx.fillRect(
@@ -69,7 +71,7 @@
       this._renderGrid(ctx);
 
       // Reset scale
-      ctx.scale(this.scaleX, this.scaleY);
+      ctx.scale(this.scaleX * flipX, this.scaleY * flipY);
     },
 
     _renderBorders: function(ctx) {
@@ -206,6 +208,13 @@
       }
       if (minY < 0) {
         currentObject.setTop(0);
+      }
+
+      if (currentObject.getWidth() < this.options.minWidth) {
+        currentObject.scaleToWidth(this.options.minWidth);
+      }
+      if (currentObject.getHeight() < this.options.minHeight) {
+        currentObject.scaleToHeight(this.options.minHeight);
       }
 
       this.lastScaleX = currentObject.getScaleX();
