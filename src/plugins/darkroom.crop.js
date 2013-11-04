@@ -377,6 +377,10 @@
         hasRotatingPoint: false,
       });
 
+      if (null !== this.options.ratio) {
+        this.cropZone.set('lockUniScaling', true);
+      }
+
       this.darkroom.canvas.add(this.cropZone);
       this.darkroom.canvas.defaultCursor = 'crosshair';
 
@@ -454,11 +458,34 @@
         bottomY = canvas.getHeight();
       }
 
+      var width = rightX - leftX;
+      var height = bottomY - topY;
+      var currentRatio = width / height;
+
+      if (this.options.ratio && this.options.ratio !== currentRatio) {
+        if (currentRatio < this.options.ratio) {
+          width *= this.options.ratio * height/width;
+        } else if (currentRatio > this.options.ratio) {
+          height *= 1 / (this.options.ratio * height/width);
+        }
+
+        if (leftX + width > canvas.getWidth()) {
+          var newWidth = canvas.getWidth() - leftX;
+          height = newWidth * height / width;
+          width = newWidth;
+        }
+        if (topY + height > canvas.getHeight()) {
+          var newHeight = canvas.getHeight() - topY;
+          width = width * newHeight / height;
+          height = newHeight;
+        }
+      }
+
       // Apply coordinates
       this.cropZone.left = leftX;
       this.cropZone.top = topY;
-      this.cropZone.width = rightX - leftX;
-      this.cropZone.height = bottomY - topY;
+      this.cropZone.width = width;
+      this.cropZone.height = height;
 
       this.darkroom.canvas.bringToFront(this.cropZone);
     },
