@@ -1,14 +1,7 @@
 ;(function(window, document, fabric) {
 
   window.DarkroomPlugins['history'] = Darkroom.Plugin.extend({
-    defaults: {
-
-    },
-
-    initialize: function InitDarkroomHistoryPlugin(darkroom, options) {
-      this.darkroom = darkroom;
-      this.options = Darkroom.extend(options, this.defaults);
-
+    initialize: function InitDarkroomHistoryPlugin() {
       this._initButtons();
 
       this.backHistoryStack = [];

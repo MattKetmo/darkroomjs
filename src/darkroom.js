@@ -32,17 +32,14 @@
   }
 
   function Plugin(darkroom, options) {
-    this.initialize(darkroom, options);
+    this.darkroom = darkroom;
+    this.options = extend(options, this.defaults);
+    this.initialize();
   }
 
   Plugin.prototype = {
-    name: 'noname',
-    defaults: {
-
-    },
-    initialize: function(darkroom, options) {
-      console.log('foo');
-    }
+    defaults: {},
+    initialize: function() { }
   }
 
   Plugin.extend = function(protoProps) {

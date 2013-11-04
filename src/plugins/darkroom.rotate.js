@@ -1,15 +1,8 @@
 ;(function(window, document) {
 
   window.DarkroomPlugins['rotate'] = Darkroom.Plugin.extend({
-    defaults: {
-
-    },
-
-    initialize: function InitDarkroomRotatePlugin(darkroom, options) {
-      this.darkroom = darkroom;
-      this.options = Darkroom.extend(options, this.defaults);
-
-      var buttonGroup = darkroom.toolbar.createButtonGroup();
+    initialize: function InitDarkroomRotatePlugin() {
+      var buttonGroup = this.darkroom.toolbar.createButtonGroup();
 
       this.leftButton = buttonGroup.createButton({
         image: 'images-rotate-left'

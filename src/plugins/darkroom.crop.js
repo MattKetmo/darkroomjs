@@ -113,12 +113,8 @@
 
     },
 
-    initialize: function InitDarkroomCropPlugin(darkroom, options) {
-
-      this.darkroom = darkroom;
-      this.options = Darkroom.extend(options, this.defaults);
-
-      var buttonGroup = darkroom.toolbar.createButtonGroup();
+    initialize: function InitDarkroomCropPlugin() {
+      var buttonGroup = this.darkroom.toolbar.createButtonGroup();
 
       this.cropButton = buttonGroup.createButton({
         image: 'images-crop'
@@ -140,13 +136,13 @@
       this.cancelButton.addEventListener('click', this.releaseFocus.bind(this));
 
       // Canvas events
-      darkroom.canvas.on('mouse:down', this.onMouseDown.bind(this));
-      darkroom.canvas.on('mouse:move', this.onMouseMove.bind(this));
-      darkroom.canvas.on('mouse:up', this.onMouseUp.bind(this));
-      darkroom.canvas.on('object:moving', this.onObjectMoving.bind(this));
-      darkroom.canvas.on('object:scaling', this.onObjectScaling.bind(this));
+      this.darkroom.canvas.on('mouse:down', this.onMouseDown.bind(this));
+      this.darkroom.canvas.on('mouse:move', this.onMouseMove.bind(this));
+      this.darkroom.canvas.on('mouse:up', this.onMouseUp.bind(this));
+      this.darkroom.canvas.on('object:moving', this.onObjectMoving.bind(this));
+      this.darkroom.canvas.on('object:scaling', this.onObjectScaling.bind(this));
 
-      darkroom.addEventListener('image:change', this.releaseFocus.bind(this));
+      this.darkroom.addEventListener('image:change', this.releaseFocus.bind(this));
     },
 
     // Avoid crop zone to go beyond the canvas edges
