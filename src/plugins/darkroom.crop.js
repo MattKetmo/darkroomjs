@@ -288,15 +288,14 @@
 
       if (!forceDimension) {
         this._renderCropZone(x, y, x+width, y+height);
-        return;
+      } else {
+        this.cropZone.set({
+          'left': x,
+          'top': y,
+          'width': width,
+          'height': height
+        });
       }
-
-      this.cropZone.set({
-        'left': x,
-        'top': y,
-        'width': width,
-        'height': height
-      });
 
       var canvas = this.darkroom.canvas;
       canvas.bringToFront(this.cropZone);

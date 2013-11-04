@@ -35,8 +35,8 @@
       },
       init: function() {
         var cropPlugin = this.getPlugin('crop');
-        //cropPlugin.selectZone(130, 40, 250, 300, true);
-        cropPlugin.requireFocus();
+        cropPlugin.selectZone(110, 40, 250, 300);
+        //cropPlugin.requireFocus();
         return;
         this.addEventListener('image:change', function() {
           cropPlugin.requireFocus();
