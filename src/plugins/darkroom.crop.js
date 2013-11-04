@@ -110,7 +110,9 @@
     startY: null,
 
     defaults: {
-
+      minHeight: 1,
+      minWidth: 1,
+      ratio: null
     },
 
     initialize: function InitDarkroomCropPlugin() {
@@ -401,16 +403,62 @@
     _renderCropZone: function(fromX, fromY, toX, toY) {
       var canvas = this.darkroom.canvas;
 
-      var minX = Math.max(0, Math.min(fromX, toX));
-      var minY = Math.max(0, Math.min(fromY, toY));
+      var minWidth = Math.min(+this.options.minWidth, canvas.getWidth());
+      var minHeight = Math.min(+this.options.minHeight, canvas.getHeight());
 
-      var maxX = Math.min(canvas.getWidth(), Math.max(fromX, toX));
-      var maxY = Math.min(canvas.getHeight(), Math.max(fromY, toY));
+      // Define corner coordinates
+      var leftX = Math.min(fromX, toX);
+      var rightX = Math.max(fromX, toX);
+      var topY = Math.min(fromY, toY);
+      var bottomY = Math.max(fromY, toY);
 
-      this.cropZone.left = minX;
-      this.cropZone.top = minY;
-      this.cropZone.width = maxX - minX;
-      this.cropZone.height = maxY - minY;
+      // Replace current point into the canvas
+      leftX = Math.max(0, leftX);
+      rightX = Math.min(canvas.getWidth(), rightX);
+      topY = Math.max(0, topY)
+      bottomY = Math.min(canvas.getHeight(), bottomY);
+
+      // Recalibrate coordinates according to given options
+      if (rightX - leftX < minWidth) {
+        if (fromX < toX)
+          rightX = leftX + minWidth;
+        else
+          leftX = rightX - minWidth;
+      }
+      if (bottomY - topY < minHeight) {
+        if (fromY < toY)
+          bottomY = topY + minHeight;
+        else
+          topY = bottomY - minHeight;
+      }
+
+      // Truncate truncate according to canvas dimensions
+      if (leftX < 0) {
+        // Translate to the left
+        rightX += Math.abs(leftX);
+        leftX = 0
+      }
+      if (rightX > canvas.getWidth()) {
+        // Translate to the right
+        leftX -= (rightX - canvas.getWidth());
+        rightX = canvas.getWidth();
+      }
+      if (topY < 0) {
+        // Translate to the bottom
+        bottomY += Math.abs(topY);
+        topY = 0
+      }
+      if (bottomY > canvas.getHeight()) {
+        // Translate to the right
+        topY -= (bottomY - canvas.getHeight());
+        bottomY = canvas.getHeight();
+      }
+
+      // Apply coordinates
+      this.cropZone.left = leftX;
+      this.cropZone.top = topY;
+      this.cropZone.width = rightX - leftX;
+      this.cropZone.height = bottomY - topY;
 
       this.darkroom.canvas.bringToFront(this.cropZone);
     },

@@ -27,12 +27,16 @@
     var dkrm = new Darkroom('#target', {
       plugins: {
         //save: false,
+        crop: {
+          minHeight: 100,
+          minWidth: 100,
+        }
       },
       init: function() {
         var cropPlugin = this.getPlugin('crop');
-        cropPlugin.selectZone(130, 40, 250, 300);
-        return;
+        //cropPlugin.selectZone(130, 40, 250, 300);
         cropPlugin.requireFocus();
+        return;
         this.addEventListener('image:change', function() {
           cropPlugin.requireFocus();
         });
