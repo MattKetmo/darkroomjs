@@ -1,20 +1,20 @@
-/**
- * @param Element|string element Image element
- * @param Array          options Options
- */
-function Darkroom(element, options) {
-  'use strict';
-  return this.init(element, options);
-}
-
-window.DarkroomPlugins = [];
-
-if (window.module !== undefined) {
-  module.exports = Darkroom;
-}
-
 ;(function(window, document, fabric) {
   'use strict';
+
+  /**
+   * @param Element|string element Image element
+   * @param Array          options Options
+   */
+  function Darkroom(element, options) {
+    return this.init(element, options);
+  }
+
+  window.Darkroom = Darkroom;
+  window.DarkroomPlugins = [];
+
+  if (window.module !== undefined) {
+    module.exports = Darkroom;
+  }
 
   Darkroom.extend = extend;
 
@@ -30,6 +30,45 @@ if (window.module !== undefined) {
     }
     return b;
   }
+
+  function Plugin(darkroom, options) {
+    this.initialize(darkroom, options);
+  }
+
+  Plugin.prototype = {
+    name: 'noname',
+    defaults: {
+
+    },
+    initialize: function(darkroom, options) {
+      console.log('foo');
+    }
+  }
+
+  Plugin.extend = function(protoProps) {
+    var parent = this;
+    var child;
+
+    if (protoProps && protoProps.hasOwnProperty('constructor')) {
+      child = protoProps.constructor;
+    } else {
+      child = function(){ return parent.apply(this, arguments); };
+    }
+
+    extend(child, parent);
+
+    var Surrogate = function(){ this.constructor = child; };
+    Surrogate.prototype = parent.prototype;
+    child.prototype = new Surrogate;
+
+    if (protoProps) extend(child.prototype, protoProps);
+
+    child.__super__ = parent.prototype;
+
+    return child;
+  }
+
+  Darkroom.Plugin = Plugin;
 
   function Toolbar(element) {
     this.element = element;
@@ -201,17 +240,16 @@ if (window.module !== undefined) {
     initPlugins: function(plugins) {
       this.plugins = {};
 
-      for (var i = 0, n = plugins.length; i < n; i++) {
-        var plugin = plugins[i];
-        var options = this.options.plugins[plugin.name];
+      for (var name in plugins) {
+        var plugin = plugins[name];
+        var options = this.options.plugins[name];
 
         // Setting false into the plugin options will disable the plugin
         if (options === false) {
           continue;
         }
 
-        this.plugins[plugin.name] = plugin;
-        plugin.init(this, options);
+        this.plugins[name] = new plugin(this, options);
       }
     },
 

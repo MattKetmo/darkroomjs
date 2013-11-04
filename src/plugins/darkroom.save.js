@@ -1,13 +1,11 @@
 ;(function(window, document) {
 
-  var DarkroomDestroyPlugin = {
-    name: 'save',
-
+  window.DarkroomPlugins['save'] = Darkroom.Plugin.extend({
     defaults: {
 
     },
 
-    init: function InitDarkroomRotatePlugin(darkroom, options) {
+    initialize: function InitDarkroomSavePlugin(darkroom, options) {
       this.darkroom = darkroom;
       this.options = Darkroom.extend(options, this.defaults);
 
@@ -19,7 +17,5 @@
 
       this.destroyButton.addEventListener('click', darkroom.selfDestroy.bind(darkroom));
     },
-  }
-
-  window.DarkroomPlugins.push(DarkroomDestroyPlugin);
+  });
 })(window, document);

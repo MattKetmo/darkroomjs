@@ -1,13 +1,11 @@
 ;(function(window, document, fabric) {
 
-  var DarkroomHistoryPlugin = {
-    name: 'history',
-
+  window.DarkroomPlugins['history'] = Darkroom.Plugin.extend({
     defaults: {
 
     },
 
-    init: function InitDarkroomRotatePlugin(darkroom, options) {
+    initialize: function InitDarkroomHistoryPlugin(darkroom, options) {
       this.darkroom = darkroom;
       this.options = Darkroom.extend(options, this.defaults);
 
@@ -111,7 +109,5 @@
       this.darkroom.image = imgInstance;
       canvas.add(imgInstance);
     }
-  }
-
-  window.DarkroomPlugins.push(DarkroomHistoryPlugin);
+  });
 })(window, document, fabric);

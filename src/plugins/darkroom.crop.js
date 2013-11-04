@@ -104,9 +104,7 @@
     }
   });
 
-  var DarkroomCropPlugin = {
-    name: 'crop',
-
+  window.DarkroomPlugins['crop'] = Darkroom.Plugin.extend({
     // Init point
     startX: null,
     startY: null,
@@ -115,7 +113,7 @@
 
     },
 
-    init: function InitDarkroomRotatePlugin(darkroom, options) {
+    initialize: function InitDarkroomCropPlugin(darkroom, options) {
 
       this.darkroom = darkroom;
       this.options = Darkroom.extend(options, this.defaults);
@@ -420,7 +418,5 @@
 
       this.darkroom.canvas.bringToFront(this.cropZone);
     },
-  }
-
-  window.DarkroomPlugins.push(DarkroomCropPlugin);
+  });
 })(window, document, fabric);

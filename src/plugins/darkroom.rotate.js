@@ -1,13 +1,11 @@
 ;(function(window, document) {
 
-  var DarkroomRotatePlugin = {
-    name: 'rotate',
-
+  window.DarkroomPlugins['rotate'] = Darkroom.Plugin.extend({
     defaults: {
 
     },
 
-    init: function InitDarkroomRotatePlugin(darkroom, options) {
+    initialize: function InitDarkroomRotatePlugin(darkroom, options) {
       this.darkroom = darkroom;
       this.options = Darkroom.extend(options, this.defaults);
 
@@ -80,7 +78,5 @@
 
       image.src = darkroom.snapshotImage();
     }
-  }
-
-  window.DarkroomPlugins.push(DarkroomRotatePlugin);
+  });
 })(window, document);
