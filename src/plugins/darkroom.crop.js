@@ -427,6 +427,11 @@
     _renderCropZone: function(fromX, fromY, toX, toY) {
       var canvas = this.darkroom.canvas;
 
+      var isRight = (toX > fromX);
+      var isLeft = !isRight;
+      var isDown = (toY > fromY);
+      var isUp = !isDown;
+
       var minWidth = Math.min(+this.options.minWidth, canvas.getWidth());
       var minHeight = Math.min(+this.options.minHeight, canvas.getHeight());
 
@@ -444,13 +449,13 @@
 
       // Recalibrate coordinates according to given options
       if (rightX - leftX < minWidth) {
-        if (fromX < toX)
+        if (isRight)
           rightX = leftX + minWidth;
         else
           leftX = rightX - minWidth;
       }
       if (bottomY - topY < minHeight) {
-        if (fromY < toY)
+        if (isDown)
           bottomY = topY + minHeight;
         else
           topY = bottomY - minHeight;
@@ -482,22 +487,46 @@
       var height = bottomY - topY;
       var currentRatio = width / height;
 
-      if (this.options.ratio && this.options.ratio !== currentRatio) {
-        if (currentRatio < this.options.ratio) {
-          width *= this.options.ratio * height/width;
-        } else if (currentRatio > this.options.ratio) {
-          height *= 1 / (this.options.ratio * height/width);
+      if (this.options.ratio && +this.options.ratio !== currentRatio) {
+        var ratio = +this.options.ratio;
+
+        if (currentRatio < ratio) {
+          var newWidth = height * ratio;
+          if (isLeft) {
+            leftX -= (newWidth - width);
+          }
+          width = newWidth;
+        } else if (currentRatio > ratio) {
+          var newHeight = height / (ratio * height/width);
+          if (isUp) {
+            topY -= (newHeight - height);
+          }
+          height = newHeight;
         }
 
+        if (leftX < 0) {
+          leftX = 0;
+          //TODO
+        }
+        if (topY < 0) {
+          topY = 0;
+          //TODO
+        }
         if (leftX + width > canvas.getWidth()) {
           var newWidth = canvas.getWidth() - leftX;
           height = newWidth * height / width;
           width = newWidth;
+          if (isUp) {
+            topY = fromY - height;
+          }
         }
         if (topY + height > canvas.getHeight()) {
           var newHeight = canvas.getHeight() - topY;
           width = width * newHeight / height;
           height = newHeight;
+          if (isLeft) {
+            leftX = fromX - width;
+          }
         }
       }
 
@@ -508,6 +537,6 @@
       this.cropZone.height = height;
 
       this.darkroom.canvas.bringToFront(this.cropZone);
-    },
+    }
   });
 })(window, document, fabric);
