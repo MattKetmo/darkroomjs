@@ -138,6 +138,10 @@
 
   Darkroom.prototype = {
     defaults: {
+      minWidth: null,
+      minHeight: null,
+      maxWidth: null,
+      maxHeight: null,
       plugins: {},
       init: function() {}
     },
@@ -211,6 +215,22 @@
     },
 
     initImage: function(image) {
+      var width = image.width;
+      var height = image.height;
+      var scaleX = 1;
+      var scaleY = 1;
+
+      if (null !== this.options.maxWidth && this.options.maxWidth < width) {
+        scaleX =  this.options.maxWidth / width;
+      }
+      if (null !== this.options.maxHeight && this.options.maxHeight < height) {
+        scaleY =  this.options.maxHeight / height;
+      }
+
+      var scale = Math.min(scaleX, scaleY);
+      width *= scale;
+      height *= scale;
+
       this.image = new fabric.Image(image, {
         // options to make the image static
         selectable: false,
@@ -224,9 +244,11 @@
         hasControls: false,
         hasBorders: false
       });
+      this.image.setScaleX(scale);
+      this.image.setScaleY(scale);
 
-      this.canvas.setWidth(image.width);
-      this.canvas.setHeight(image.height);
+      this.canvas.setWidth(width);
+      this.canvas.setHeight(height);
       this.canvas.add(this.image);
       this.canvas.centerObject(this.image);
       this.image.setCoords();
