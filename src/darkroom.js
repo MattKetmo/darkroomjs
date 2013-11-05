@@ -217,6 +217,7 @@
     initImage: function(image) {
       var width = image.width;
       var height = image.height;
+      var scale = 1;
       var scaleX = 1;
       var scaleY = 1;
 
@@ -226,8 +227,16 @@
       if (null !== this.options.maxHeight && this.options.maxHeight < height) {
         scaleY =  this.options.maxHeight / height;
       }
+      scale = Math.min(scaleX, scaleY);
 
-      var scale = Math.min(scaleX, scaleY);
+      if (null !== this.options.minWidth && this.options.minWidth > width) {
+        scaleX =  this.options.minWidth / width;
+      }
+      if (null !== this.options.minHeight && this.options.minHeight > height) {
+        scaleY =  this.options.minHeight / height;
+      }
+      scale = Math.max(scaleX, scaleY);
+
       width *= scale;
       height *= scale;
 
