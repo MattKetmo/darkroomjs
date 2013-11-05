@@ -8,12 +8,13 @@
   left: 0;
   background: #444;
   height: 40px;
-  display: inline-block;
+  display: block;
   z-index: 99;
   border-radius: 2px;
+  white-space: nowrap;
 }
 .darkroom-toolbar:before {
-  content:"";
+  content: "";
   position: absolute;
   bottom: -7px;
   left: 20px;

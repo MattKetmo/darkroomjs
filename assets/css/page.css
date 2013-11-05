@@ -1,6 +1,9 @@
 body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #f9f9f9;
   color: #444;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -8,11 +11,35 @@ body {
   margin: auto;
 }
 
+#header {
+  background: #000 url('../images/darkroom-bg.jpg') right top no-repeat;
+  padding: 30px;
+  margin-bottom: 40px;
+  min-width: 700px;
+}
+
 h1 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 42px;
+  font-size: 52px;
+  margin: 0;
+  padding: 0;
   font-weight: 100;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 50px;
+  color: #eee;
+}
+
+.hero {
+  font-size: 22px;
+  font-weight: 100;
+  color: #ccc;
+  margin: 0;
+  padding: 0;
+}
+
+.image-container {
+  display: inline-block;
+  background: white;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #eee;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }

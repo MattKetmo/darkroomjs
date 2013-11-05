@@ -8,13 +8,22 @@
   <link rel="stylesheet" href="./assets/css/darkroom.css">
 </head>
 <body>
-  <div class="container">
-    <h1>DarkroomJS</h1>
+  <header id="header">
+    <div class="container">
+      <h1>Darkroom<strong>JS</strong></h1>
+      <p class="hero">
+        Quick image editing via javascript and HTML5 canvas
+      </p>
+    </div>
+  </header>
 
-    <p>
-      <!-- You may add attribute crossOrigin="anonymous" for CORS -->
-      <img src="./images/batcat.png" alt="BatCat" id="target">
-    </p>
+  <div id="content">
+    <div class="container">
+      <p class="image-container">
+        <!-- You may add attribute crossOrigin="anonymous" for CORS -->
+        <img src="./images/batcat.png" alt="BatCat" id="target">
+      </p>
+    </div>
   </div>
 
   <script src="./assets/js/fabric.js"></script>
@@ -23,6 +32,7 @@
   <script src="./src/plugins/darkroom.crop.js"></script>
   <script src="./src/plugins/darkroom.rotate.js"></script>
   <script src="./src/plugins/darkroom.save.js"></script>
+
   <script>
     var dkrm = new Darkroom('#target', {
       plugins: {
