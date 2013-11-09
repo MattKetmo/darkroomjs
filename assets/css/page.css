@@ -16,6 +16,7 @@ body {
   padding: 30px;
   margin-bottom: 40px;
   min-width: 700px;
+  position: relative;
 }
 
 h1 {
