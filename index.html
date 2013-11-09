@@ -19,10 +19,19 @@
 
   <div id="content">
     <div class="container">
-      <p class="image-container">
+      <figure class="image-container">
         <!-- You may add attribute crossOrigin="anonymous" for CORS -->
-        <img src="./images/batcat.png" alt="BatCat" id="target">
-      </p>
+        <img src="./images/domokun.jpg" alt="DomoKun" id="target">
+
+        <figcaption class="image-meta">
+          <a target="_blank" href="http://www.flickr.com/photos/bentorode/5176910387/">
+            ©
+            <strong class="image-meta-title">DomoKun</strong>
+            by
+            <em class="image-meta-author">Ben Torode</em>
+          </a>
+        </figcaption>
+      </figure>
     </div>
   </div>
 
@@ -51,7 +60,7 @@
       },
       init: function() {
         var cropPlugin = this.getPlugin('crop');
-        cropPlugin.selectZone(110, 40, 250, 300);
+        cropPlugin.selectZone(280, 115, 200, 200);
         //cropPlugin.requireFocus();
         return;
         this.addEventListener('image:change', function() {

@@ -1,6 +1,6 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #f2f2f4;
   color: #444;
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body {
 }
 
 #header {
-  background: #000 url('../images/darkroom-bg.jpg') right top no-repeat;
+  background: #222;
   padding: 30px;
   margin-bottom: 40px;
   min-width: 700px;
@@ -39,7 +39,19 @@ h1 {
   background: white;
   padding: 10px;
   margin: 0;
-  border: 1px solid #eee;
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
+  border: 1px solid #e2e2e2;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.image-container .image-meta {
+  margin-top: 5px;
+  font-size: 12px;
+}
+.image-container .image-meta a {
+  text-decoration: none;
+  color: #444;
+}
+.image-container .image-meta a:hover .image-meta-title {
+  text-decoration: underline;
 }
