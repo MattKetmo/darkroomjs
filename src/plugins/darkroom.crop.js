@@ -47,37 +47,42 @@
       var canvas = ctx.canvas;
       var borderOffset = 0.17;
 
+      //
+      //    x0    x1        x2      x3
+      // y0 +------------------------+
+      //    |\\\\\\\\\\\\\\\\\\\\\\\\|
+      //    |\\\\\\\\\\\\\\\\\\\\\\\\|
+      // y1 +------+---------+-------+
+      //    |\\\\\\|         |\\\\\\\|
+      //    |\\\\\\|    0    |\\\\\\\|
+      //    |\\\\\\|         |\\\\\\\|
+      // y2 +------+---------+-------+
+      //    |\\\\\\\\\\\\\\\\\\\\\\\\|
+      //    |\\\\\\\\\\\\\\\\\\\\\\\\|
+      // y3 +------------------------+
+      //
+
+      var x0 = Math.ceil(-this.getWidth() / 2 - this.getLeft());
+      var x1 = Math.ceil(-this.getWidth() / 2);
+      var x2 = Math.ceil(this.getWidth() / 2);
+      var x3 = Math.ceil(this.getWidth() / 2 + (canvas.width - this.getWidth() - this.getLeft()));
+
+      var y0 = Math.ceil(-this.getHeight() / 2 - this.getTop());
+      var y1 = Math.ceil(-this.getHeight() / 2);
+      var y2 = Math.ceil(this.getHeight() / 2);
+      var y3 = Math.ceil(this.getHeight() / 2 + (canvas.height - this.getHeight() - this.getTop()));
+
       // Upper rect
-      ctx.fillRect(
-        -this.getWidth() / 2 - this.getLeft(),
-        -this.getHeight() / 2 - this.getTop(),
-        canvas.width,
-        this.getTop() + borderOffset
-      );
+      ctx.fillRect(x0, y0, x3 - x0, y1 - y0 + borderOffset);
 
       // Left rect
-      ctx.fillRect(
-        -this.getWidth()/2 - this.getLeft(),
-        -this.getHeight()/2,
-        this.getLeft(),
-        this.getHeight()
-      );
+      ctx.fillRect(x0, y1, x1 - x0, y2 - y1 + borderOffset);
 
       // Right rect
-      ctx.fillRect(
-        this.getWidth()/2,
-        -this.getHeight()/2,
-        canvas.width- this.getLeft() - this.getWidth(),
-        this.getHeight()
-      );
+      ctx.fillRect(x2, y1, x3 - x2, y2 - y1 + borderOffset);
 
       // Down rect
-      ctx.fillRect(
-        -this.getWidth() / 2 - this.getLeft(),
-        this.getHeight() / 2  - borderOffset,
-        canvas.width,
-        canvas.height - this.getTop() - this.getHeight() + borderOffset
-      );
+      ctx.fillRect(x0, y2, x3 - x0, y3 - y2);
     },
 
     _renderBorders: function(ctx) {
