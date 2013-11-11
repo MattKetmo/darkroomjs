@@ -1,9 +1,62 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #f2f2f4;
-  color: #444;
+  color: #555;
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #0099CC;
+}
+
+figure {
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0
+}
+
+.copy {
+  font-size: 62.5%;
+}
+
+.copy p, .copy pre, .copy ul, .copy dl {
+  font-size: 1.6em;
+  line-height: 1.5;
+}
+
+.copy p.intro {
+  font-size: 1.8em;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.copy h2 {
+  font-size: 2.5em;
+  font-weight: 300;
+}
+
+.copy pre {
+  font-family: monospace;
+  background: #fafafa;
+  padding: 10px 15px;
+  border: 1px solid #e2e2e2;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.copy dt {
+  font-weight: bold;
 }
 
 .container {
@@ -14,9 +67,12 @@ body {
 #header {
   background: #222;
   padding: 30px;
-  margin-bottom: 40px;
   min-width: 700px;
   position: relative;
+}
+
+#content {
+  margin: 20px 0 40px;
 }
 
 h1 {
@@ -39,7 +95,7 @@ h1 {
   display: inline-block;
   background: white;
   padding: 10px;
-  margin: 0;
+  margin: 40px 0 0;
   border: 1px solid #e2e2e2;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
