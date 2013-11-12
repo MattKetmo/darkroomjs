@@ -10,7 +10,7 @@
   }
 
   window.Darkroom = Darkroom;
-  window.DarkroomPlugins = [];
+  Darkroom.plugins = [];
 
   if (window.module !== undefined) {
     module.exports = Darkroom;
@@ -162,7 +162,7 @@
       if (null === element)
         return;
 
-      var plugins = window.DarkroomPlugins;
+      var plugins = Darkroom.plugins;
 
       var image = new Image();
 

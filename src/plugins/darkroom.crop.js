@@ -1,4 +1,4 @@
-;(function(window, document, fabric) {
+;(function(window, document, Darkroom, fabric) {
   'use strict';
 
   var CropZone = fabric.util.createClass(fabric.Rect, {
@@ -112,7 +112,7 @@
     }
   });
 
-  window.DarkroomPlugins['crop'] = Darkroom.Plugin.extend({
+  Darkroom.plugins['crop'] = Darkroom.Plugin.extend({
     // Init point
     startX: null,
     startY: null,
@@ -538,4 +538,4 @@
       this.darkroom.canvas.bringToFront(this.cropZone);
     }
   });
-})(window, document, fabric);
+})(window, document, Darkroom, fabric);

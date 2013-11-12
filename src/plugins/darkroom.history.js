@@ -1,7 +1,7 @@
-;(function(window, document, fabric) {
+;(function(window, document, Darkroom, fabric) {
   'use strict';
 
-  window.DarkroomPlugins['history'] = Darkroom.Plugin.extend({
+  Darkroom.plugins['history'] = Darkroom.Plugin.extend({
     initialize: function InitDarkroomHistoryPlugin() {
       this._initButtons();
 
@@ -104,4 +104,4 @@
       canvas.add(imgInstance);
     }
   });
-})(window, document, fabric);
+})(window, document, Darkroom, fabric);

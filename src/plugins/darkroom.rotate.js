@@ -1,7 +1,7 @@
-;(function(window, document) {
+;(function(window, document, Darkroom, fabric) {
   'use strict';
 
-  window.DarkroomPlugins['rotate'] = Darkroom.Plugin.extend({
+  Darkroom.plugins['rotate'] = Darkroom.Plugin.extend({
     initialize: function InitDarkroomRotatePlugin() {
       var buttonGroup = this.darkroom.toolbar.createButtonGroup();
 
@@ -73,4 +73,4 @@
       image.src = darkroom.snapshotImage();
     }
   });
-})(window, document);
+})(window, document, Darkroom, fabric);

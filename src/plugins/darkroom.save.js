@@ -1,7 +1,7 @@
-;(function(window, document) {
+;(function(window, document, Darkroom) {
   'use strict';
 
-  window.DarkroomPlugins['save'] = Darkroom.Plugin.extend({
+  Darkroom.plugins['save'] = Darkroom.Plugin.extend({
     initialize: function InitDarkroomSavePlugin() {
       var buttonGroup = this.darkroom.toolbar.createButtonGroup();
 
@@ -12,4 +12,4 @@
       this.destroyButton.addEventListener('click', this.darkroom.selfDestroy.bind(this.darkroom));
     },
   });
-})(window, document);
+})(window, document, Darkroom);
