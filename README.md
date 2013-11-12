@@ -8,6 +8,40 @@ your browser, such as **rotation** or **cropping**. It is based on the awesome
 
 Try the online demo at [http://mattketmo.github.io/darkroomjs](http://mattketmo.github.io/darkroomjs/)
 
+The library is currently *work in progress*.
+I know there is some bug especially when resizing the crop zone.
+Feel free to fork the project or report issues on GitHub.
+All ideas are also welcome.
+
+## Usage
+
+Simply instanciate a new Darkroom object with a reference to the image element:
+
+    <img src="some-image.jpg" id="target">
+    <script>
+      new Darkroom('#target');
+    </script>
+
+You can also pass some options:
+
+    new Darkroom('#target', {
+      // Canvas initialization size
+      minWidth: 100,
+      minHeight: 100,
+      maxWidth: 500,
+      maxHeight: 500,
+
+      // Plugins options
+      plugins: {
+        crop: {
+          minHeight: 50,
+          minWidth: 50,
+          ratio: 1
+        },
+        save: false // disable plugin
+      },
+    });
+
 ## Why?
 
 It's easy to get a javascript script to crop an image in a web page.
