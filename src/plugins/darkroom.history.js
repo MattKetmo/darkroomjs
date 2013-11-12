@@ -1,4 +1,5 @@
 ;(function(window, document, fabric) {
+  'use strict';
 
   window.DarkroomPlugins['history'] = Darkroom.Plugin.extend({
     initialize: function InitDarkroomHistoryPlugin() {

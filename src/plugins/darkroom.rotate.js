@@ -1,4 +1,5 @@
 ;(function(window, document) {
+  'use strict';
 
   window.DarkroomPlugins['rotate'] = Darkroom.Plugin.extend({
     initialize: function InitDarkroomRotatePlugin() {

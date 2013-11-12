@@ -1,10 +1,5 @@
-/*
-  TODO
-  - option min x:y (ex: 40x40)
-  - option scale w:h (ex: 16:9)
-  - fix depassement when scaling
- */
 ;(function(window, document, fabric) {
+  'use strict';
 
   var CropZone = fabric.util.createClass(fabric.Rect, {
     _render: function(ctx) {

@@ -1,4 +1,5 @@
 ;(function(window, document) {
+  'use strict';
 
   window.DarkroomPlugins['save'] = Darkroom.Plugin.extend({
     initialize: function InitDarkroomSavePlugin() {
