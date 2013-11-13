@@ -25,7 +25,9 @@ module.exports = function(grunt) {
     uglify: {
       main: {
         options: {
-          mangle: false
+          mangle: false,
+          sourceMap: 'build/darkroom.map.js',
+          sourceMappingURL: 'darkroom.map.js'
         },
         files: {
           'build/darkroom.min.js': [
