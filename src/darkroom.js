@@ -1,23 +1,17 @@
+//     DarkroomJS
+
+//     (c) 2013 Matthieu Moquet.
+//     DarkroomJS may be freely distributed under the MIT license.
+//     For all details and documentation:
+//     http://mattketmo.github.io/darkroomjs
+
 ;(function(window, document, fabric) {
   'use strict';
 
-  /**
-   * @param Element|string element Image element
-   * @param Array          options Options
-   */
-  function Darkroom(element, options) {
-    return this.init(element, options);
-  }
+  // Utilities
+  // ---------
 
-  window.Darkroom = Darkroom;
-  Darkroom.plugins = [];
-
-  if (window.module !== undefined) {
-    module.exports = Darkroom;
-  }
-
-  Darkroom.extend = extend;
-
+  // Utility method to easily extend objects.
   function extend(b, a) {
     var prop;
     if (b === undefined) {
@@ -31,6 +25,27 @@
     return b;
   }
 
+  // Root definitions
+  // ----------------
+
+  // Core object of DarkroomJS.
+  // Basically it's a single object, instanciable via an element
+  // (it could be a CSS selector or a DOM element), some custom options,
+  // and a list of plugin objects (or none to use default ones).
+  function Darkroom(element, options, plugins) {
+    return this.init(element, options, plugins);
+  }
+
+  // Darkroom namespace is the only one available outside of this context.
+  window.Darkroom = Darkroom;
+
+  // Create an empty list of plugin objects, which will be filled by
+  // other plugin scripts. This is the default plugin list if none is
+  // specified in Darkroom'ss constructor.
+  Darkroom.plugins = [];
+
+  // Define a plugin object. This is the (abstract) parent class which
+  // has to be extended for each plugin.
   function Plugin(darkroom, options) {
     this.darkroom = darkroom;
     this.options = extend(options, this.defaults);
@@ -42,6 +57,7 @@
     initialize: function() { }
   }
 
+  // Inspired by Backbone.js extend capability.
   Plugin.extend = function(protoProps) {
     var parent = this;
     var child;
@@ -65,8 +81,13 @@
     return child;
   }
 
+  // Attach the plugin class into the main namespace.
   Darkroom.Plugin = Plugin;
 
+  // UI elements
+  // -----------
+
+  // Toolbar object.
   function Toolbar(element) {
     this.element = element;
     this.actionsElement = element.querySelector('.darkroom-toolbar-actions');
@@ -75,12 +96,13 @@
   Toolbar.prototype.createButtonGroup = function(options) {
     var buttonGroup = document.createElement('li');
     buttonGroup.className = 'darkroom-button-group';
-    //buttonGroup.innerHTML = '<ul></ul>';
+    /*buttonGroup.innerHTML = '<ul></ul>';*/
     this.actionsElement.appendChild(buttonGroup);
 
     return new ButtonGroup(buttonGroup);
   };
 
+  // ButtonGroup object.
   function ButtonGroup(element) {
     this.element = element;
   }
@@ -108,6 +130,7 @@
     return button;
   }
 
+  // Button object.
   function Button(element) {
     this.element = element;
   }
@@ -132,20 +155,36 @@
     }
   };
 
-
+  // Extend the default fabric canvas object to add default options.
   var Canvas = fabric.util.createClass(fabric.Canvas, {
   });
 
+  // Core object prototype
+  // ---------------------
+
   Darkroom.prototype = {
+    // This is the default options.
+    // It has it's own options, such as dimension specification (min/max
+    // width and height), plus options for each plugins.
+    // Option for those plugins are passed through plugin name.
+    // `init` option is a callback called after image is loaded into the
+    // canvas.
     defaults: {
+      // main options
       minWidth: null,
       minHeight: null,
       maxWidth: null,
       maxHeight: null,
+
+      // plugins options
       plugins: {},
+
+      // after initialisation callback
       init: function() {}
     },
 
+    // Add ability to attach event listener on the core object.
+    // It uses the canvas element to process events.
     addEventListener: function(eventName, callback) {
       this.canvas.getElement().addEventListener(eventName, callback);
     },
@@ -153,7 +192,12 @@
       this.canvas.getElement().dispatchEvent(event);
     },
 
-    init: function(element, options) {
+    // Initialisation.
+    // It will replace the given image element by a canvas plus some wrapper
+    // `div` blocks. A toolbar object is instanciated and the image is loaded
+    // into the canvas element. Finally it calls each plugins initialisation
+    // methods.
+    init: function(element, options, plugins) {
       var _this = this;
       this.options = extend(options, this.defaults);
 
@@ -162,7 +206,7 @@
       if (null === element)
         return;
 
-      var plugins = Darkroom.plugins;
+      var plugins = plugins || Darkroom.plugins;
 
       var image = new Image();
 
@@ -177,7 +221,7 @@
         _this.options.init.bind(_this).call();
       }
 
-      //image.crossOrigin = 'anonymous';
+      /*image.crossOrigin = 'anonymous';*/
       image.src = element.src;
     },
 
@@ -295,9 +339,10 @@
 
       image.src = this.snapshotImage();
 
-      // TODO
-      // - destroy plugins
-      // - delete canvas
+      /* TODO
+       - destroy plugins
+       - delete canvas
+      */
     },
 
     snapshotImage: function() {
