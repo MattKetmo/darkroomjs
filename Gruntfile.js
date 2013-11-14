@@ -4,6 +4,13 @@ module.exports = function(grunt) {
 
   // configure the tasks
   grunt.initConfig({
+    watch: {
+      scripts: {
+        files: 'src/**/*.js',
+        tasks: [ 'copy:main', 'uglify:main', 'clean:scripts' ]
+      }
+    },
+
     copy: {
       main: {
         cwd: 'src',
@@ -40,6 +47,16 @@ module.exports = function(grunt) {
           ]
         }
       }
+    },
+
+    connect: {
+      server: {
+        options: {
+          port: 4000,
+          base: '.',
+          hostname: '*'
+        }
+      }
     }
 
   });
@@ -50,11 +67,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   // define the tasks
   grunt.registerTask(
-    'default',
+    'build',
     'Compiles all of the assets and copies the files to the build directory.',
     [ 'clean:build', 'copy', 'uglify:main', 'clean:scripts' ]
+  );
+
+  grunt.registerTask(
+    'default',
+    'Build, watch and launch server.',
+    [ 'build', 'connect', 'watch' ]
   );
 };
