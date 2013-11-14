@@ -26,6 +26,9 @@ module.exports = function(grunt) {
       },
       scripts: {
         src: [ 'build/src' ]
+      },
+      docco: {
+        src: [ 'docs' ]
       }
     },
 
@@ -57,6 +60,15 @@ module.exports = function(grunt) {
           hostname: '*'
         }
       }
+    },
+
+    docco: {
+      docs: {
+        src: ['src/**/*.js'],
+        options: {
+          output: 'docs/'
+        }
+      }
     }
 
   });
@@ -68,12 +80,19 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-docco');
 
   // define the tasks
   grunt.registerTask(
     'build',
     'Compiles all of the assets and copies the files to the build directory.',
-    [ 'clean:build', 'copy', 'uglify:main', 'clean:scripts' ]
+    [ 'clean:build', 'copy', 'uglify:main', 'clean:scripts']
+  );
+
+  grunt.registerTask(
+    'docs',
+    'Compiles all of the assets and copies the files to the build directory.',
+    [ 'clean:docco', 'docco']
   );
 
   grunt.registerTask(

@@ -6,7 +6,8 @@ git checkout -b gh-pages master
 
 # Compile assets
 grunt build
-git add -f build
+grunt docs
+git add -f build docs
 git commit -m "Build GH pages"
 
 # Push & reset

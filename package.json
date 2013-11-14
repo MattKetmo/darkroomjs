@@ -23,6 +23,7 @@
     "grunt-modernizr": "~0.3.0",
     "grunt-svgmin": "~0.2.0",
     "grunt-concurrent": "~0.3.0",
+    "grunt-docco": "~0.3.0",
     "load-grunt-tasks": "~0.1.0",
     "time-grunt": "~0.1.1",
     "jshint-stylish": "~0.1.3"
