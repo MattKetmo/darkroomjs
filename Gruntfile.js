@@ -27,6 +27,9 @@ module.exports = function(grunt) {
       scripts: {
         src: [ 'build/lib/js' ]
       },
+      stylesheets: {
+        src: [ 'build/lib/css' ]
+      },
       docco: {
         src: [ 'docs' ]
       }
@@ -47,6 +50,16 @@ module.exports = function(grunt) {
             'build/lib/js/plugins/darkroom.crop.js',
             'build/lib/js/plugins/darkroom.save.js',
             'build/lib/js/**/*.js'
+          ]
+        }
+      }
+    },
+
+    cssmin: {
+      combine: {
+        files: {
+          'build/css/darkroom.min.css': [
+            'build/lib/css/**/*.css',
           ]
         }
       }
@@ -77,6 +90,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
@@ -86,7 +100,7 @@ module.exports = function(grunt) {
   grunt.registerTask(
     'build',
     'Compiles all of the assets and copies the files to the build directory.',
-    [ 'clean:build', 'copy', 'uglify:main', 'clean:scripts']
+    [ 'clean:build', 'copy', 'cssmin', 'uglify:main', 'clean:scripts', 'clean:stylesheets']
   );
 
   grunt.registerTask(

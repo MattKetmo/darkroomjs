@@ -1,7 +1,12 @@
 @font-face {
   font-family: "android";
-  src: url('../fonts/android.eot');
-  src: url('../fonts/android.eot?#iefix') format('eot'), url('../fonts/android.eot') format('embedded-opentype'), url('../fonts/android.svg') format('svg'), url('../fonts/android.ttf') format('truetype'), url('../fonts/android.woff') format('woff');
+  src: url('../lib/fonts/android.eot');
+  src:
+    url('../lib/fonts/android.eot?#iefix') format('eot'),
+    url('../lib/fonts/android.eot') format('embedded-opentype'),
+    url('../lib/fonts/android.svg') format('svg'),
+    url('../lib/fonts/android.ttf') format('truetype'),
+    url('../lib/fonts/android.woff') format('woff');
   font-weight: normal;
   font-style: normal; }
 
