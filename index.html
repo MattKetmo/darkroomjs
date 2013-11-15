@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>DarkroomJS</title>
-  <link rel="stylesheet" href="./assets/css/page.css">
-  <link rel="stylesheet" href="./assets/css/webfont.css">
-  <link rel="stylesheet" href="./assets/css/darkroom.css">
+  <link rel="stylesheet" href="./build/lib/css/webfont.css">
+  <link rel="stylesheet" href="./build/lib/css/darkroom.css">
+  <link rel="stylesheet" href="./demo/css/page.css">
 </head>
 <body>
   <script>
@@ -46,7 +46,7 @@
 
         <figure class="image-container">
           <!-- You may add attribute crossOrigin="anonymous" for CORS -->
-          <img src="./images/domokun.jpg" alt="DomoKun" id="target">
+          <img src="./demo/images/domokun.jpg" alt="DomoKun" id="target">
 
           <figcaption class="image-meta">
             <a target="_blank" href="http://www.flickr.com/photos/bentorode/5176910387/">
@@ -140,8 +140,8 @@
     </div>
   </div>
 
-  <script src="./assets/js/fabric.js"></script>
-  <script src="./build/darkroom.min.js"></script>
+  <script src="./build/lib/vendor/fabric.js"></script>
+  <script src="./build/js/darkroom.min.js"></script>
 
   <script>
     var dkrm = new Darkroom('#target', {

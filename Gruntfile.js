@@ -6,16 +6,16 @@ module.exports = function(grunt) {
   grunt.initConfig({
     watch: {
       scripts: {
-        files: 'src/**/*.js',
+        files: 'lib/js/**/*.js',
         tasks: [ 'copy:main', 'uglify:main', 'clean:scripts' ]
       }
     },
 
     copy: {
       main: {
-        cwd: 'src',
+        cwd: 'lib',
         src: [ '**' ],
-        dest: 'build/src',
+        dest: 'build/lib',
         expand: true
       }
     },
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         src: [ 'build' ]
       },
       scripts: {
-        src: [ 'build/src' ]
+        src: [ 'build/lib/js' ]
       },
       docco: {
         src: [ 'docs' ]
@@ -36,17 +36,17 @@ module.exports = function(grunt) {
       main: {
         options: {
           mangle: false,
-          sourceMap: 'build/darkroom.map.js',
-          sourceMappingURL: 'darkroom.map.js'
+          sourceMap: 'build/js/darkroom.js.map',
+          sourceMappingURL: 'darkroom.js.map'
         },
         files: {
-          'build/darkroom.min.js': [
-            'build/src/darkroom.js',
-            'build/src/plugins/darkroom.history.js',
-            'build/src/plugins/darkroom.rotate.js',
-            'build/src/plugins/darkroom.crop.js',
-            'build/src/plugins/darkroom.save.js',
-            'build/src/**/*.js'
+          'build/js/darkroom.min.js': [
+            'build/lib/js/darkroom.js',
+            'build/lib/js/plugins/darkroom.history.js',
+            'build/lib/js/plugins/darkroom.rotate.js',
+            'build/lib/js/plugins/darkroom.crop.js',
+            'build/lib/js/plugins/darkroom.save.js',
+            'build/lib/js/**/*.js'
           ]
         }
       }
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
 
     docco: {
       docs: {
-        src: ['src/**/*.js'],
+        src: ['lib/js/**/*.js'],
         options: {
           output: 'docs/'
         }
