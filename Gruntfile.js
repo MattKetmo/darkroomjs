@@ -39,8 +39,8 @@ module.exports = function(grunt) {
       main: {
         options: {
           mangle: false,
-          sourceMap: 'build/js/darkroom.js.map',
-          sourceMappingURL: 'darkroom.js.map'
+          sourceMap: 'build/js/darkroom.min.js.map',
+          sourceMappingURL: 'darkroom.min.js.map'
         },
         files: {
           'build/js/darkroom.min.js': [
@@ -55,12 +55,14 @@ module.exports = function(grunt) {
       }
     },
 
-    cssmin: {
-      combine: {
+    sass: {
+      dist: {
+        options: {
+          style: 'compressed',
+          sourcemap: true
+        },
         files: {
-          'build/css/darkroom.min.css': [
-            'build/lib/css/**/*.css',
-          ]
+          'build/css/darkroom.min.css': 'build/lib/css/darkroom.scss'
         }
       }
     },
@@ -91,6 +93,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
@@ -100,7 +103,7 @@ module.exports = function(grunt) {
   grunt.registerTask(
     'build',
     'Compiles all of the assets and copies the files to the build directory.',
-    [ 'clean:build', 'copy', 'cssmin', 'uglify:main', 'clean:scripts', 'clean:stylesheets']
+    [ 'clean:build', 'copy', 'sass', 'uglify:main', 'clean:scripts', 'clean:stylesheets']
   );
 
   grunt.registerTask(

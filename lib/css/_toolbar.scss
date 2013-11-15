@@ -1,0 +1,40 @@
+.darkroom-toolbar {
+  position: absolute;
+  top: -45px;
+  left: 0;
+  background: #444;
+  height: 40px;
+  display: block;
+  z-index: 99;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.darkroom-toolbar:before {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #444;
+}
+
+ul.darkroom-toolbar-actions {
+  list-style: none;
+  padding: 0 5px;
+  margin: 0;
+}
+.darkroom-toolbar-actions li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+ul.darkroom-toolbar-actions li.darkroom-button-group {
+  border-right: 1px solid #777;
+}
+ul.darkroom-toolbar-actions li.darkroom-button-group:last-child {
+  border-right: none;
+}
