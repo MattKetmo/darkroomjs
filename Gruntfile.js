@@ -43,8 +43,8 @@ module.exports = function(grunt) {
           'build/darkroom.min.js': [
             'build/src/darkroom.js',
             'build/src/plugins/darkroom.history.js',
-            'build/src/plugins/darkroom.crop.js',
             'build/src/plugins/darkroom.rotate.js',
+            'build/src/plugins/darkroom.crop.js',
             'build/src/plugins/darkroom.save.js',
             'build/src/**/*.js'
           ]
