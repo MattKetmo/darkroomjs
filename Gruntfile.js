@@ -8,6 +8,10 @@ module.exports = function(grunt) {
       scripts: {
         files: 'lib/js/**/*.js',
         tasks: [ 'copy:main', 'uglify:main', 'clean:scripts' ]
+      },
+      stylesheets: {
+        files: 'lib/css/**/*.scss',
+        tasks: [ 'copy:main', 'webfont', 'sass', 'clean:stylesheets' ]
       }
     },
 
@@ -23,6 +27,9 @@ module.exports = function(grunt) {
     clean: {
       build: {
         src: [ 'build' ]
+      },
+      lib: {
+        src: [ 'build/lib' ]
       },
       scripts: {
         src: [ 'build/lib/js' ]
@@ -58,11 +65,31 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options: {
-          style: 'compressed',
+          //style: 'compressed',
           sourcemap: true
         },
         files: {
           'build/css/darkroom.min.css': 'build/lib/css/darkroom.scss'
+        }
+      }
+    },
+
+    webfont: {
+      icons: {
+        src: 'build/lib/icons/*.svg',
+        dest: 'build/fonts',
+        destCss: 'build/lib/css/webfont',
+        options: {
+          font: 'darkroom',
+          //types: 'ttf',
+          embed: 'woff,ttf',
+          stylesheet: 'scss',
+          relativeFontPath: '../fonts',
+          htmlDemo: false,
+          syntax: 'bootstrap',
+          templateOptions: {
+            classPrefix: 'darkroom-icon-'
+          }
         }
       }
     },
@@ -98,12 +125,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-docco');
+  grunt.loadNpmTasks('grunt-webfont');
 
   // define the tasks
   grunt.registerTask(
     'build',
     'Compiles all of the assets and copies the files to the build directory.',
-    [ 'clean:build', 'copy', 'sass', 'uglify:main', 'clean:scripts', 'clean:stylesheets']
+    [ 'clean:build', 'copy', 'webfont', 'sass', 'uglify:main', 'clean:lib' ]
   );
 
   grunt.registerTask(
