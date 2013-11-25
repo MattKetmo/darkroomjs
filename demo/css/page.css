@@ -95,10 +95,14 @@ h1 {
   display: inline-block;
   background: white;
   padding: 10px;
-  margin: 40px 0 0;
+  margin: 5px 0;
   border: 1px solid #e2e2e2;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
+}
+
+.image-container.target {
+  margin-top: 40px;
 }
 
 .image-container .image-meta {
