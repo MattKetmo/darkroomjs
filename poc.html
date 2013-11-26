@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <script src="../vendor/fabric-dev.js"></script>
+  <script src="../vendor/fabric.js"></script>
 
   <script>
     var imageEl = document.getElementById('target');
@@ -40,12 +40,17 @@
     var image = new fabric.Image(imageEl, {
     });
 
-    image.rotate(90);
-
+    //image.rotate(90);
     canvas.add(image);
     canvas.centerObject(image);
     image.setCoords();
 
+    //var ctx = canvas.getContext();
+    //ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    //ctx.fillRect(0, 0, 640, 100);
+    //ctx.fillRect(0, 100, 640, 100);
+    //ctx.fillRect(0, 200, 640, 100);
+    //ctx.fillRect(0, 300, 640, 100);
 
   </script>
 </body>
