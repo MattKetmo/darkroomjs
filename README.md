@@ -13,6 +13,19 @@ I know there is some bug especially when resizing the crop zone.
 Feel free to fork the project or report issues on GitHub.
 All ideas are also welcome.
 
+## Building
+
+- Install [Node](http://nodejs.org/)
+- Install [Grunt](http://gruntjs.com/)
+- The webfont is auto generated from SVG icons.
+  This uses the [grunt-webfont](https://github.com/sapegin/grunt-webfont) task which
+  requires `fontforge` and `ttfautohint`. See [the readme](https://github.com/sapegin/grunt-webfont#installation)
+  for more details.
+- Run `npm install`
+- Run `grunt build`
+
+Every assets will be generated into the `build/` directory.
+
 ## Usage
 
 Simply instanciate a new Darkroom object with a reference to the image element:
