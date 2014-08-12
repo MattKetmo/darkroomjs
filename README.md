@@ -30,30 +30,34 @@ Every assets will be generated into the `build/` directory.
 
 Simply instanciate a new Darkroom object with a reference to the image element:
 
-    <img src="some-image.jpg" id="target">
-    <script>
-      new Darkroom('#target');
-    </script>
+```html
+<img src="some-image.jpg" id="target">
+<script>
+  new Darkroom('#target');
+</script>
+```
 
 You can also pass some options:
 
-    new Darkroom('#target', {
-      // Canvas initialization size
-      minWidth: 100,
-      minHeight: 100,
-      maxWidth: 500,
-      maxHeight: 500,
+```javascript
+new Darkroom('#target', {
+  // Canvas initialization size
+  minWidth: 100,
+  minHeight: 100,
+  maxWidth: 500,
+  maxHeight: 500,
 
-      // Plugins options
-      plugins: {
-        crop: {
-          minHeight: 50,
-          minWidth: 50,
-          ratio: 1
-        },
-        save: false // disable plugin
-      },
-    });
+  // Plugins options
+  plugins: {
+    crop: {
+      minHeight: 50,
+      minWidth: 50,
+      ratio: 1
+    },
+    save: false // disable plugin
+  },
+});
+```
 
 ## Why?
 
@@ -73,5 +77,6 @@ Buttons can easily be added to the toolbar and binded with those features.
 
 ## License
 
-DarkroomJS is released under the MIT License. See the bundled LICENSE file for details.
+DarkroomJS is released under the MIT License. See the [bundled LICENSE file](LICENSE)
+for details.
 

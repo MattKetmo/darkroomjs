@@ -1,4 +1,5 @@
-/.sass-cache
-/node_modules
-/build
-/docs
+/.sass-cache/
+/bower_components/
+/node_modules/
+/build/
+/docs/
