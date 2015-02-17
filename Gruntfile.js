@@ -6,7 +6,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     watch: {
       scripts: {
-        files: 'lib/js/**/*.js',
+        files: ['lib/js/**/*.js', 'vendor/*.js'],
         tasks: [ 'copy:main', 'uglify:main', 'clean:scripts' ]
       },
       stylesheets: {
