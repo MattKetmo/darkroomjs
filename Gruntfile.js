@@ -12,6 +12,10 @@ module.exports = function(grunt) {
       stylesheets: {
         files: 'lib/css/**/*.scss',
         tasks: [ 'copy:main', 'webfont', 'sass', 'clean:stylesheets' ]
+      },
+      icons: {
+        files: 'lib/icons/*.svg',
+        tasks: ['build']
       }
     },
 
