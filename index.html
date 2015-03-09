@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DarkroomJS</title>
+  <link rel="stylesheet" href="/build/css/darkroom.css">
+  <link rel="stylesheet" href="/css/page.css">
+</head>
+<body>
+  <header id="header">
+    <a href="https://github.com/MattKetmo/darkroomjs">
+      <img style="position: absolute; top: 0; right: 0; border: 0;"
+        src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"
+        alt="Fork on GitHub">
+    </a>
+
+    <div class="container">
+      <h1>Darkroom<strong>JS</strong></h1>
+      <p class="hero">
+        Extensible image editing tool powered by HTML5 canvas.
+      </p>
+    </div>
+  </header>
+
+  <div id="content">
+    <div class="container">
+      <section class="copy">
+        <h2 class="sr-only">Introduction</h2>
+
+        <p class="intro">
+          <strong>DarkroomJS</strong> is a JavaScript library which provides basic
+          image editing tools in your browser, such as <strong>rotation</strong> or <strong>cropping</strong>.
+          It is based on the awesome <a href="http://fabricjs.com/">FabricJS</a> library
+          to handle images in HTML5 canvas.
+        </p>
+
+        <figure class="image-container target">
+          <img src="/images/domokun.jpg" alt="DomoKun" id="target">
+
+          <figcaption class="image-meta">
+            <a target="_blank" href="http://www.flickr.com/photos/bentorode/5176910387/">
+              ©
+              <strong class="image-meta-title">DomoKun</strong>
+              by
+              <em class="image-meta-author">Ben Torode</em>
+            </a>
+          </figcaption>
+        </figure>
+
+        <h2>Why?</h2>
+
+        <p>
+          It's easy to get a <a href="http://www.hotscripts.com/blog/javascript-image-cropping-scripts/">
+          javascript script</a> to crop an image in a web page. But if your want
+          more features like rotation or brightness adjustment, then you will have to do all of this yourself.
+          No more jQuery plugins here. DarkroomJS allows you to make whatever you want with your images by
+          using the power of the HTML5 canvas.
+        </p>
+
+        <h2>The concept</h2>
+
+        <p>
+          The library is designed to be easily extendable.
+          The core script only transforms the target image to a canvas with a
+          FabricJS instance, and creates an empty toolbar.
+          All the features are then implemented in separate plugins.
+        </p>
+
+        <figure>
+        <pre><code>.
+├── darkroom.js
+└── plugins
+    ├── darkroom.crop.js
+    ├── darkroom.history.js
+    ├── darkroom.rotate.js
+    └── darkroom.save.js</code></pre>
+        </figure>
+
+        <p>
+          Each plugin is responsible for creating its own functionality.
+          Buttons can easily be added to the toolbar and binded with those features.
+        </p>
+
+        <h2>Features</h2>
+
+        <p>
+          Currently, the implemented features are:
+        </p>
+
+        <dl>
+          <dt>Crop</dt>
+          <dd>
+            Crops the image by selecting a zone with your mouse.
+            This supports several options like ratio and dimensions control (min/max).
+          </dd>
+
+          <dt>Rotation</dt>
+          <dd>
+            Adds two buttons to let you rotate hte image to the left or the right.
+          </dd>
+
+          <dt>History</dt>
+          <dd>
+            Allows to undo and redo any changes on the main image.
+          </dd>
+
+          <dt>Save</dt>
+          <dd>
+            Transform back the canvas into image.
+            This is mainly a proof of concept to show how plugins work.
+            This one only makes <a href="https://github.com/MattKetmo/darkroomjs/blob/master/lib/js/plugins/darkroom.save.js">a few lines</a>.
+          </dd>
+        </dl>
+
+        <!--
+        <h2>Interactive example</h2>
+        <p></p>
+        -->
+
+        <h2>Contributing</h2>
+
+        <p>
+          The project is under MIT license.
+          Feel free to fork the project on <a href="https://github.com/MattKetmo/darkroomjs">GitHub</a>
+          or report issues. All ideas are also welcome.
+        </p>
+
+      </section>
+    </div>
+  </div>
+
+  <script src="./vendor/fabric.js"></script>
+  <script src="./build/js/bootstrap.js"></script>
+  <script src="./build/js/darkroom.js"></script>
+
+  <script>
+    var dkrm = new Darkroom('#target', {
+      // Size options
+      minWidth: 100,
+      minHeight: 100,
+      maxWidth: 650,
+      maxHeight: 500,
+
+      plugins: {
+        //save: false,
+        crop: {
+          quickCropKey: 67, //key "c"
+          //minHeight: 50,
+          //minWidth: 50,
+          //ratio: 1
+        }
+      },
+      init: function() {
+        var cropPlugin = this.getPlugin('crop');
+        cropPlugin.selectZone(170, 25, 300, 300);
+        //cropPlugin.requireFocus();
+      }
+    });
+  </script>
+</body>
+</html>
