@@ -4,22 +4,26 @@
   "version": "1.0.0",
   "homepage": "https://mattketmo.github.io/darkroomjs",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/mattketmo/darkroomjs.git"
+    "type": "git",
+    "url": "https://github.com/mattketmo/darkroomjs.git"
   },
   "author": "Matthieu Moquet <matthieu@moquet.net> (http://moquet.net/)",
-  "dependencies": { },
+  "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-connect": "~0.5.0",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-sass": "~0.5.0",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-watch": "~0.5.2",
-    "grunt-docco": "~0.3.0",
-    "grunt-webfont": "~0.2.1",
-    "load-grunt-tasks": "~0.1.0"
+    "cheerio": "^0.18.0",
+    "gulp": "^3.8.6",
+    "gulp-concat": "^2.3.4",
+    "gulp-connect": "^2.0.6",
+    "gulp-inject": "^1.2.0",
+    "gulp-plumber": "^0.6.4",
+    "gulp-sass": "^0.7.2",
+    "gulp-sourcemaps": "^1.1.0",
+    "gulp-svgmin": "^1.1.1",
+    "gulp-svgstore": "^5.0.0",
+    "gulp-uglify": "^0.3.1",
+    "gulp-util": "^3.0.0",
+    "js-string-escape": "^1.0.0",
+    "rimraf": "^2.2.8",
+    "streamqueue": "^0.1.1"
   }
 }

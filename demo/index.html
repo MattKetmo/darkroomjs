@@ -3,19 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>DarkroomJS</title>
-  <link rel="stylesheet" href="./build/css/darkroom.min.css">
-  <link rel="stylesheet" href="./demo/css/page.css">
+  <link rel="stylesheet" href="/build/css/darkroom.css">
+  <link rel="stylesheet" href="/css/page.css">
 </head>
 <body>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-23657373-2', 'mattketmo.github.io');
-    ga('send', 'pageview');
-  </script>
-
   <header id="header">
     <a href="https://github.com/MattKetmo/darkroomjs">
       <img style="position: absolute; top: 0; right: 0; border: 0;"
@@ -44,8 +35,7 @@
         </p>
 
         <figure class="image-container target">
-          <!-- You may add attribute crossOrigin="anonymous" for CORS -->
-          <img src="./demo/images/domokun.jpg" alt="DomoKun" id="target">
+          <img src="/images/domokun.jpg" alt="DomoKun" id="target">
 
           <figcaption class="image-meta">
             <a target="_blank" href="http://www.flickr.com/photos/bentorode/5176910387/">
@@ -63,7 +53,7 @@
           It's easy to get a <a href="http://www.hotscripts.com/blog/javascript-image-cropping-scripts/">
           javascript script</a> to crop an image in a web page. But if your want
           more features like rotation or brightness adjustment, then you will have to do all of this yourself.
-          No more jQuery plugins here. DarkroomJS allows you to make whatever you want with your images by 
+          No more jQuery plugins here. DarkroomJS allows you to make whatever you want with your images by
           using the power of the HTML5 canvas.
         </p>
 
@@ -140,7 +130,8 @@
   </div>
 
   <script src="./vendor/fabric.js"></script>
-  <script src="./build/js/darkroom.min.js"></script>
+  <script src="./build/js/bootstrap.js"></script>
+  <script src="./build/js/darkroom.js"></script>
 
   <script>
     var dkrm = new Darkroom('#target', {
