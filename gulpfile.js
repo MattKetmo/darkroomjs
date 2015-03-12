@@ -76,28 +76,25 @@ gulp.task('scripts', function () {
     return file.contents.toString();
   }
 
-  gulp
-    .src(srcDir + '/js/core/bootstrap.js')
-    .pipe(inject(svgs, { transform: fileContents }))
-    .pipe(gulp.dest(distDir + '/js'))
-
-
   var files = [
+    srcDir + '/js/core/bootstrap.js',
     srcDir + '/js/core/darkroom.js',
+    srcDir + '/js/core/*.js',
+    // srcDir + '/js/plugins/*.js',
     srcDir + '/js/plugins/darkroom.history.js',
     srcDir + '/js/plugins/darkroom.rotate.js',
     srcDir + '/js/plugins/darkroom.crop.js',
     srcDir + '/js/plugins/darkroom.save.js',
-    '!' + srcDir + '/js/bootstrap.js'
   ];
 
   gulp.src(files)
     .pipe(plumber())
     .pipe(isDebug ? sourcemaps.init() : gutil.noop())
       .pipe(concat('darkroom.js', {newLine: ';'}))
+      .pipe(inject(svgs, { transform: fileContents }))
       .pipe(isDebug ? gutil.noop() : uglify({mangle: false}))
     .pipe(isDebug ? sourcemaps.write() : gutil.noop())
-    .pipe(gulp.dest(distDir + '/js'))
+    .pipe(gulp.dest(distDir))
 })
 
 //
@@ -111,5 +108,5 @@ gulp.task('styles', function () {
         outputStyle: isDebug ? 'nested' : 'compressed'
       }))
     .pipe(isDebug ? sourcemaps.write() : gutil.noop())
-    .pipe(gulp.dest(distDir + '/css'))
+    .pipe(gulp.dest(distDir))
 })

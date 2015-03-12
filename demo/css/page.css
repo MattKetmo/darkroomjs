@@ -91,6 +91,10 @@ h1 {
   padding: 0;
 }
 
+.figure-wrapper {
+  /*text-align: center;*/
+}
+
 .image-container {
   display: inline-block;
   background: white;
@@ -105,9 +109,14 @@ h1 {
   margin-top: 40px;
 }
 
+.image-container img {
+  max-width: 100%;
+}
+
 .image-container .image-meta {
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: 12px;
+  text-align: left;
 }
 .image-container .image-meta a {
   text-decoration: none;
