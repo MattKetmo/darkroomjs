@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>DarkroomJS</title>
-  <link rel="stylesheet" href="/build/css/darkroom.css">
+  <link rel="stylesheet" href="/build/darkroom.css">
   <link rel="stylesheet" href="/css/page.css">
 </head>
 <body>
@@ -34,18 +34,20 @@
           to handle images in HTML5 canvas.
         </p>
 
-        <figure class="image-container target">
-          <img src="/images/domokun.jpg" alt="DomoKun" id="target">
+        <div class="figure-wrapper">
+          <figure class="image-container target">
+            <img src="/images/domokun-big.jpg" alt="DomoKun" id="target">
 
-          <figcaption class="image-meta">
-            <a target="_blank" href="http://www.flickr.com/photos/bentorode/5176910387/">
-              ©
-              <strong class="image-meta-title">DomoKun</strong>
-              by
-              <em class="image-meta-author">Ben Torode</em>
-            </a>
-          </figcaption>
-        </figure>
+            <figcaption class="image-meta">
+              <a target="_blank" href="http://www.flickr.com/photos/bentorode/5176910387/">
+                ©
+                <strong class="image-meta-title">DomoKun</strong>
+                by
+                <em class="image-meta-author">Ben Torode</em>
+              </a>
+            </figcaption>
+          </figure>
+        </div>
 
         <h2>Why?</h2>
 
@@ -130,18 +132,19 @@
   </div>
 
   <script src="./vendor/fabric.js"></script>
-  <script src="./build/js/bootstrap.js"></script>
-  <script src="./build/js/darkroom.js"></script>
+  <script src="./build/darkroom.js"></script>
 
   <script>
     var dkrm = new Darkroom('#target', {
       // Size options
       minWidth: 100,
       minHeight: 100,
-      maxWidth: 650,
+      maxWidth: 600,
       maxHeight: 500,
-      //canvasRatio: 4/3,
+      ratio: 4/3,
+      backgroundColor: '#000',
 
+      // Plugins options
       plugins: {
         //save: false,
         crop: {
@@ -151,10 +154,12 @@
           //ratio: 4/3
         }
       },
-      init: function() {
-        var cropPlugin = this.getPlugin('crop');
-        cropPlugin.selectZone(170, 25, 300, 300);
-        //cropPlugin.requireFocus();
+
+      // Post initialize script
+      initialize: function() {
+        // var cropPlugin = this.plugins['crop'];
+        // cropPlugin.selectZone(170, 25, 300, 300);
+        // cropPlugin.requireFocus();
       }
     });
   </script>
