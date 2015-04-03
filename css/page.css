@@ -97,6 +97,7 @@ h1 {
 
 .image-container {
   display: inline-block;
+  max-width: 100%;
   background: white;
   padding: 10px;
   margin: 5px 0;
