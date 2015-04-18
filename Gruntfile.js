@@ -6,12 +6,16 @@ module.exports = function(grunt) {
   grunt.initConfig({
     watch: {
       scripts: {
-        files: 'lib/js/**/*.js',
+        files: ['lib/js/**/*.js', 'vendor/*.js'],
         tasks: [ 'copy:main', 'uglify:main', 'clean:scripts' ]
       },
       stylesheets: {
         files: 'lib/css/**/*.scss',
         tasks: [ 'copy:main', 'webfont', 'sass', 'clean:stylesheets' ]
+      },
+      icons: {
+        files: 'lib/icons/*.svg',
+        tasks: ['build']
       }
     },
 

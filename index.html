@@ -63,7 +63,7 @@
           It's easy to get a <a href="http://www.hotscripts.com/blog/javascript-image-cropping-scripts/">
           javascript script</a> to crop an image in a web page. But if your want
           more features like rotation or brightness adjustment, then you will have to do all of this yourself.
-          No more jQuery plugins here. DarkroomJS allows you to make whatever you want with your images by 
+          No more jQuery plugins here. DarkroomJS allows you to make whatever you want with your images by
           using the power of the HTML5 canvas.
         </p>
 
@@ -140,6 +140,8 @@
   </div>
 
   <script src="./vendor/fabric.js"></script>
+  <script src="./vendor/fontdetect.js"></script>
+  <script src="./vendor/jscolor/jscolor.js"></script>
   <script src="./build/js/darkroom.min.js"></script>
 
   <script>
@@ -147,8 +149,8 @@
       // Size options
       minWidth: 100,
       minHeight: 100,
-      maxWidth: 650,
-      maxHeight: 500,
+      maxWidth: 1280,
+      maxHeight: 720,
 
       plugins: {
         //save: false,
@@ -160,8 +162,8 @@
         }
       },
       init: function() {
-        var cropPlugin = this.getPlugin('crop');
-        cropPlugin.selectZone(170, 25, 300, 300);
+        // var cropPlugin = this.getPlugin('crop');
+        // cropPlugin.selectZone(170, 25, 300, 300);
         //cropPlugin.requireFocus();
       }
     });
