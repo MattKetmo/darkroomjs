@@ -5,9 +5,8 @@ git branch -D gh-pages
 git checkout -b gh-pages master
 
 # Compile assets
-grunt build
-grunt docs
-git add -f build docs
+gulp build --prod
+git add -f build
 git commit -m "Build GH pages"
 
 # Push & reset
