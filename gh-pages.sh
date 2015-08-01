@@ -1,14 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 
 # Update gh-pages branch
 git branch -D gh-pages
-git checkout -b gh-pages master
+git checkout -b gh-pages HEAD
 
-# Compile assets
+# Build demo
+rm -rf build
+rm -rf demo/{build,vendor}
 gulp build --prod
-git add -f build
+cp -r build demo/build
+mkdir demo/vendor
+cp bower_components/fabric/dist/fabric.min.js demo/vendor/fabric.js
+
+# Commit
+git add -f demo
 git commit -m "Build GH pages"
 
 # Push & reset
-git push -f origin gh-pages
-git checkout master
+git push origin `git subtree split --prefix demo HEAD`:gh-pages --force
+git checkout -
