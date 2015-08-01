@@ -4,13 +4,13 @@
 git branch -D gh-pages
 git checkout -b gh-pages HEAD
 
-# Build demo
+# Build assets
 rm -rf build
-rm -rf demo/{build,vendor}
 gulp build --prod
+
+# Put build into demo folder
+rm demo/build
 cp -r build demo/build
-mkdir demo/vendor
-cp bower_components/fabric/dist/fabric.min.js demo/vendor/fabric.js
 
 # Commit
 git add -f demo
