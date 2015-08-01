@@ -1,7 +1,8 @@
 {
   "name": "darkroom",
   "description": "Extensible image editing tool via HTML canvas",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "license": "MIT",
   "homepage": "https://mattketmo.github.io/darkroomjs",
   "repository": {
     "type": "git",
@@ -25,5 +26,9 @@
     "js-string-escape": "^1.0.0",
     "rimraf": "^2.2.8",
     "streamqueue": "^0.1.1"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/gulp server build --prod",
+    "develop": "node_modules/.bin/gulp"
   }
 }

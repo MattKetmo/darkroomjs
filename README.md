@@ -15,16 +15,9 @@ All ideas are also welcome.
 
 ## Building
 
-- Install [Node](http://nodejs.org/)
-- Install [Grunt](http://gruntjs.com/)
-- The webfont is auto generated from SVG icons.
-  This uses the [grunt-webfont](https://github.com/sapegin/grunt-webfont) task which
-  requires `fontforge` and `ttfautohint`. See [the readme](https://github.com/sapegin/grunt-webfont#installation)
-  for more details.
-- Run `npm install`
-- Run `grunt build`
-
-Every assets will be generated into the `build/` directory.
+- Install [Node](http://nodejs.org/) & `npm`.
+- Run `npm install` to build dependencies.
+- Run `npm start` to build the assets and start the demo webserver.
 
 ## Usage
 
@@ -74,6 +67,10 @@ All the features are then implemented in separate plugins.
 
 Each plugin is responsible for creating its own functionality.
 Buttons can easily be added to the toolbar and binded with those features.
+
+## Contributing
+
+Run `npm develop` to build and watch the files while developing.
 
 ## License
 
