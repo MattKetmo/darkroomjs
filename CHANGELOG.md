@@ -1,0 +1,18 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+
+## 2.0.0 (Unreleased yet)
+
+- Use of **Gulp** for the build process
+- Replace the webfont by **SVG symbols** (which are direclty included in the compiled javascript)
+- Ability to change **canvas ratio**
+
+## 1.0.x (2014)
+
+Initial release.
+
+- Create canvas with FabricJS from an image element
+- Plugins: Crop, History, Rotate, Save
+- Build process via Grunt
+- Build webfont from SVG files to display the icons

@@ -91,8 +91,13 @@ h1 {
   padding: 0;
 }
 
+.figure-wrapper {
+  /*text-align: center;*/
+}
+
 .image-container {
   display: inline-block;
+  max-width: 100%;
   background: white;
   padding: 10px;
   margin: 5px 0;
@@ -105,9 +110,14 @@ h1 {
   margin-top: 40px;
 }
 
+.image-container img {
+  max-width: 100%;
+}
+
 .image-container .image-meta {
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: 12px;
+  text-align: left;
 }
 .image-container .image-meta a {
   text-decoration: none;
