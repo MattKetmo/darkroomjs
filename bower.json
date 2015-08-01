@@ -10,10 +10,12 @@
   "dependencies": {
     "fabric": "~1.4.*"
   },
-  "main": "index.js",
+  "main": [
+    "build/darkroom.css",
+    "build/darkroom.js"
+  ],
   "moduleType": [
-    "amd",
-    "node"
+    "globals"
   ],
   "keywords": [
     "image",
@@ -25,5 +27,5 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
 }
