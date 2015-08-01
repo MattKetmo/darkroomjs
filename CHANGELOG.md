@@ -2,11 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2.0.0 (Unreleased yet)
+## 2.0.0 (2015-08-01)
 
 - Use of **Gulp** for the build process
 - Replace the webfont by **SVG symbols** (which are direclty included in the compiled javascript)
 - Ability to change **canvas ratio**
+- Original image is kept and changes are done on a clone
 
 ## 1.0.x (2014)
 
