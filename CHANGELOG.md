@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Add type "button" to avoid html5 submit validation (#24)
+
 ## 2.0.0 (2015-08-01)
 
 - Use of **Gulp** for the build process
