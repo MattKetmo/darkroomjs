@@ -49,6 +49,15 @@ new Darkroom('#target', {
     },
     save: false // disable plugin
   },
+
+  // Post initialization method
+  initialize: function() {
+    // Active crop selection
+    this.plugins['crop'].requireFocus();
+
+    // Add custom listener
+    this.addEventListener('core:transformation', function() { /* ... */ });
+  }
 });
 ```
 
