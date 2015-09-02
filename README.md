@@ -1,5 +1,8 @@
 # DarkroomJS
 
+![Bower](https://img.shields.io/bower/v/darkroom.svg)
+![License MIT](http://img.shields.io/badge/license-MIT-blue.svg)
+
 DarkroomJS is a JavaScript library which provides basic image editing tools in
 your browser, such as **rotation** or **cropping**. It is based on the awesome
 [FabricJS](http://fabricjs.com/) library to handle images in HTML5 canvas.
