@@ -8,11 +8,6 @@ your browser, such as **rotation** or **cropping**. It is based on the awesome
 
 Try the online demo at [http://mattketmo.github.io/darkroomjs](http://mattketmo.github.io/darkroomjs/)
 
-The library is currently *work in progress*.
-I know there is some bug especially when resizing the crop zone.
-Feel free to fork the project or report issues on GitHub.
-All ideas are also welcome.
-
 ## Building
 
 - Install [Node](http://nodejs.org/) & `npm`.
