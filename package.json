@@ -11,7 +11,6 @@
   "author": "Matthieu Moquet <matthieu@moquet.net> (http://moquet.net/)",
   "dependencies": {},
   "devDependencies": {
-    "cheerio": "^0.18.0",
     "gulp": "^3.8.6",
     "gulp-concat": "^2.3.4",
     "gulp-connect": "^2.0.6",
@@ -23,9 +22,7 @@
     "gulp-svgstore": "^5.0.0",
     "gulp-uglify": "^0.3.1",
     "gulp-util": "^3.0.0",
-    "js-string-escape": "^1.0.0",
-    "rimraf": "^2.2.8",
-    "streamqueue": "^0.1.1"
+    "rimraf": "^2.2.8"
   },
   "scripts": {
     "start": "node_modules/.bin/gulp server build --prod",
