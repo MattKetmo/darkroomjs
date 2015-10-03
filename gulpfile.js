@@ -10,6 +10,8 @@ var sourcemaps = require('gulp-sourcemaps')
 var svgmin = require('gulp-svgmin')
 var svgstore = require('gulp-svgstore')
 var uglify = require('gulp-uglify')
+var webpack = require('webpack')
+var webpackcfg = require('./webpack.config')
 
 
 //
@@ -37,7 +39,7 @@ gulp.task('clean', function(cb) {
 // Build
 //
 gulp.task('build', ['clean'], function() {
-  gulp.start('scripts', 'styles');
+  gulp.start('scripts', 'umd', 'styles');
 });
 
 //
@@ -93,6 +95,17 @@ gulp.task('scripts', function () {
     .pipe(isDebug ? sourcemaps.write() : gutil.noop())
     .pipe(gulp.dest(distDir))
 })
+
+//
+// Umd
+//
+gulp.task('umd', function (done) {
+  webpack(webpackcfg, function(err, stats) {
+    if (err) throw new gutil.PluginError('webpack', err);
+    gutil.log('[webpack]', stats.toString());
+    done();
+  });
+});
 
 //
 // Stylesheet
