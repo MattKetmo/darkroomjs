@@ -6,16 +6,16 @@ git checkout -b gh-pages HEAD
 
 # Build assets
 rm -rf build
-gulp build --prod
+npm run build
 
-# Put build into demo folder
-rm demo/build
-cp -r build demo/build
+# Put build into public folder
+rm public/build
+cp -r build public/build
 
 # Commit
-git add -f demo
+git add -f public
 git commit -m "Build GH pages"
 
 # Push & reset
-git push origin `git subtree split --prefix demo HEAD`:gh-pages --force
+git push origin `git subtree split --prefix public HEAD`:gh-pages --force
 git checkout -

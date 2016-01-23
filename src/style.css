@@ -1,0 +1,78 @@
+.darkroom-container {
+  position: relative;
+}
+
+.darkroom-toolbar {
+  display: block;
+  position: absolute;
+  top: -45px;
+  left: 0;
+  background: #444;
+  height: 40px;
+  min-width: 40px;
+  z-index: 99;
+  border-radius: 2px;
+  white-space: nowrap;
+  padding: 0 5px;
+}
+
+/* Triangle */
+.darkroom-toolbar:before {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #444;
+}
+
+.darkroom-toolbar button {
+  box-sizing: border-box;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 2px 8px 0;
+  height: 40px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.darkroom-toolbar button:not([disabled]):hover {
+  cursor: pointer;
+  background: #555;
+}
+
+.darkroom-toolbar button:active {
+  cursor: pointer;
+  background: #333;
+}
+
+.darkroom-toolbar button svg {
+  /*padding-top: 2px;*/
+  /*width: 24px;*/
+  /*height: 24px;*/
+  fill: #fff;
+}
+
+.darkroom-toolbar button[disabled] svg {
+  fill: #666;
+}
+
+.darkroom-toolbar button.darkroom-button--active svg {
+  fill: #33b5e5;
+}
+.darkroom-toolbar button.darkroom-button--success svg {
+  fill: #99cc00;
+}
+.darkroom-toolbar button.darkroom-button--warning svg {
+  fill: #ffbb33;
+}
+.darkroom-toolbar button.darkroom-button--danger svg {
+  fill: #ff4444;
+}
+.darkroom-toolbar button.darkroom-button--hide {
+  display: none;
+}
