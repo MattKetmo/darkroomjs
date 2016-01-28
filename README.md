@@ -1,6 +1,6 @@
 # DarkroomJS
 
-![Bower](https://img.shields.io/bower/v/darkroom.svg)
+![NPM](https://img.shields.io/npm/v/darkroom.svg)
 ![License MIT](http://img.shields.io/badge/license-MIT-blue.svg)
 
 DarkroomJS is a JavaScript library which provides basic image editing tools in
@@ -9,62 +9,47 @@ your browser, such as **rotation** or **cropping**. It is based on the awesome
 
 ## Demo
 
-Try the online demo at [http://mattketmo.github.io/darkroomjs](http://mattketmo.github.io/darkroomjs/)
-
-## Building
-
-- Install [Node](http://nodejs.org/) & `npm`.
-- Run `npm install` to build dependencies.
-- Run `npm start` to build the assets and start the demo webserver.
+Try the online demo at [mattketmo.github.io/darkroomjs](https://mattketmo.github.io/darkroomjs/)
 
 ## Usage
 
 Simply instanciate a new Darkroom object with a reference to the image element:
 
 ```html
-<img src="some-image.jpg" id="target">
+<img src="image.jpg" id="target">
 <script>
-  new Darkroom('#target');
-</script>
-```
-
-You can also pass some options:
-
-```javascript
-new Darkroom('#target', {
-  // Canvas initialization size
-  minWidth: 100,
-  minHeight: 100,
-  maxWidth: 500,
-  maxHeight: 500,
+var dkrm = new Darkroom('#target', {
+  // Visible canvas
+  workingDrawer: {
+    minWidth: 100,
+    minHeight: 100,
+    maxWidth: 500,
+    maxHeight: 500,
+  },
 
   // Plugins options
   plugins: {
     crop: {
       minHeight: 50,
       minWidth: 50,
-      ratio: 1
+      ratio: 1,
     },
-    save: false // disable plugin
-  },
-
-  // Post initialization method
-  initialize: function() {
-    // Active crop selection
-    this.plugins['crop'].requireFocus();
-
-    // Add custom listener
-    this.addEventListener('core:transformation', function() { /* ... */ });
+    custom: function(darkroom) {
+      /* Custom plugin initialization */
+    }
   }
 });
+
+// Post initialization callback
+dkrm.initialized.then(function() {
+  // Active crop selection
+  dkrm.plugins['crop'].requireFocus();
+
+  // Add custom listener
+  dkrm.events.subscribe('transformation', function(payload) { /* ... */ });
+});
+</script>
 ```
-
-## Why?
-
-It's easy to get a javascript script to crop an image in a web page.
-But if your want more features like rotation or brightness adjustment, then you
-will have to do it yourself. No more jQuery plugins here.
-It only uses the power of HTML5 canvas to make what ever you want with your image.
 
 ## The concept
 
@@ -81,22 +66,24 @@ Run `npm develop` to build and watch the files while developing.
 
 ## FAQ
 
-How can I access the edited image?
+#### How can I access the edited image?
 
-In order to get the edited image data, you must ask the canvas for it. By doing so inside the callback of your choice (in this case save), you can assign the edited image data to wherever you please. 
+In order to get the edited image data, you must ask the canvas for it.
+By doing so inside the callback of your choice (in this case save),
+you can assign the edited image data to wherever you please.
 
 ```javascript
 save: {
-      callback: function() {
-          this.darkroom.selfDestroy(); // Cleanup
-          var newImage = dkrm.canvas.toDataURL();
-          fileStorageLocation = newImage;
-      }
+  callback: function() {
+    this.darkroom.selfDestroy(); // Cleanup
+    var newImage = dkrm.canvas.toDataURL();
+    fileStorageLocation = newImage;
   }
+}
 ```
 
 ## License
 
-DarkroomJS is released under the MIT License. See the [bundled LICENSE file](LICENSE)
-for details.
+DarkroomJS is released under the MIT License.
+See the [bundled LICENSE file](LICENSE) for details.
 
