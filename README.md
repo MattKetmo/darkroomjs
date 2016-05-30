@@ -43,6 +43,8 @@ new Darkroom('#target', {
     crop: {
       minHeight: 50,
       minWidth: 50,
+      maxHeight: 500,
+      maxWidth: 500,
       ratio: 1
     },
     save: false // disable plugin
