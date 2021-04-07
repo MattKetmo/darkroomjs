@@ -28,6 +28,7 @@ figure {
 
 .copy {
   font-size: 62.5%;
+  padding: 0  10px;
 }
 
 .copy p, .copy pre, .copy ul, .copy dl {
@@ -60,7 +61,7 @@ figure {
 }
 
 .container {
-  width: 700px;
+  max-width: 700px;
   margin: auto;
 }
 
@@ -126,3 +127,21 @@ h1 {
 .image-container .image-meta a:hover .image-meta-title {
   text-decoration: underline;
 }
+
+.warning {
+  padding: 15px 20px;
+  color: #664d03;
+  background-color: #fff3cd;
+  border: 1px solid #ffecb5;
+  border-radius: 10px;
+}
+
+.doka-gif img {
+  display: block;
+  margin: 5px auto;
+}
+
+.doka-gif {
+  text-align: center;
+}
+
