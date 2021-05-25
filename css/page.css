@@ -49,7 +49,7 @@ figure {
 
 .copy h2 {
   font-size: 2.5em;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .copy .h2-bold {
@@ -73,30 +73,32 @@ figure {
 .container {
   max-width: 700px;
   margin: auto;
+  overflow: hidden;
 }
 
 #header {
   background: #222;
   padding: 30px;
-  min-width: 700px;
+  /* min-width: 700px; */
   position: relative;
 }
 
 #content {
-  margin: 20px 0 40px;
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
 h1 {
   font-size: 52px;
   margin: 0;
   padding: 0;
-  font-weight: 100;
+  font-weight: 300;
   color: #eee;
 }
 
 .hero {
   font-size: 22px;
-  font-weight: 100;
+  font-weight: 300;
   color: #ccc;
   margin: 0;
   padding: 0;
@@ -138,6 +140,26 @@ h1 {
   text-decoration: underline;
 }
 
+.btn-github-container {
+  max-width: 200px;
+  margin: 30px auto 10px;
+}
+
+.btn-github:hover {
+  color: #eee;
+  text-decoration: none;
+}
+
+.btn-github {
+  display: block;
+  text-align: center;
+  background-color: #3474E0;
+  color: white;
+  font-size: 18px;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
 .warning {
   padding: 15px 20px;
   color: #664d03;
@@ -147,6 +169,7 @@ h1 {
 }
 
 .doka-gif img {
+  max-width: 100%;
   display: block;
   margin: 5px auto 10px;
   transition-property: all;

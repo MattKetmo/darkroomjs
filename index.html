@@ -2,18 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta httpEquiv="x-ua-compatible" content="ie=edge" />
   <title>DarkroomJS</title>
   <link rel="stylesheet" href="./build/darkroom.css">
   <link rel="stylesheet" href="./css/page.css">
 </head>
 <body>
+  <div class="page">
   <header id="header">
-    <a href="https://github.com/MattKetmo/darkroomjs">
-      <img style="position: absolute; top: 0; right: 0; border: 0;"
-        src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"
-        alt="Fork on GitHub">
-    </a>
-
     <div class="container">
       <h1>Darkroom<strong>JS</strong></h1>
       <p class="hero">
@@ -52,6 +49,10 @@
               </a>
             </figcaption>
           </figure>
+        </div>
+
+        <div class="btn-github-container">
+          <a class="btn-github outbound-link" href="https://github.com/MattKetmo/darkroomjs">View on Github</a>
         </div>
 
         <h2>Why?</h2>
@@ -137,7 +138,7 @@
 
         <p class="doka-gif">
           <a href="https://gumroad.com/a/854594675" class="outbound-link">
-            <img src="./images/doka-image-editor-gh.gif" alt="Doka Image Editor demo preview">
+            <img loading="lazy" src="./images/doka-image-editor-gh.gif" alt="Doka Image Editor demo preview">
           </a>
 
           source: <a href="https://gumroad.com/a/854594675" class="outbound-link">Doka Image Editor</a>
@@ -202,9 +203,9 @@
       });
     }
 
-    document.querySelectorAll('a.outbound-link').forEach(function(e) {
-      e.onclick = function() {
-        captureOutboundLink(e.getAttribute('href'))
+    document.querySelectorAll('a.outbound-link').forEach(function(el) {
+      el.onclick = function(event) {
+        captureOutboundLink(el.getAttribute('href'))
       };
     })
   </script>
