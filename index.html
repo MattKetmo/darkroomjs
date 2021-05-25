@@ -127,7 +127,7 @@
         <h2 id="alternatives" class="h2-bold">Alternative: Doka Image Editor</h2>
 
         <p>
-          If you're looking for an alternative, you can have a look at <strong><a href="https://gumroad.com/a/854594675">Doka Image Editor</a></strong>.
+          If you're looking for an alternative, you can have a look at <strong><a href="https://gumroad.com/a/854594675" class="outbound-link">Doka Image Editor</a></strong>.
         </p>
 
         <p>
@@ -136,11 +136,11 @@
         </p>
 
         <p class="doka-gif">
-          <a href="https://gumroad.com/a/854594675">
+          <a href="https://gumroad.com/a/854594675" class="outbound-link">
             <img src="./images/doka-image-editor-gh.gif" alt="Doka Image Editor demo preview">
           </a>
 
-          source: <a href="https://gumroad.com/a/854594675">Doka Image Editor</a>
+          source: <a href="https://gumroad.com/a/854594675" class="outbound-link">Doka Image Editor</a>
         </p>
 
         <h2>Contributing</h2>
@@ -194,6 +194,19 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
     ga('create', 'UA-23657373-2', 'mattketmo.github.io');
     ga('send', 'pageview');
+
+    function captureOutboundLink(url) {
+      ga('send', 'event', 'outbound', 'click', url, {
+        'transport': 'beacon',
+        'hitCallback': function(){document.location = url;}
+      });
+    }
+
+    document.querySelectorAll('a.outbound-link').forEach(function(e) {
+      e.onclick = function() {
+        captureOutboundLink(e.getAttribute('href'))
+      };
+    })
   </script>
 </body>
 </html>
