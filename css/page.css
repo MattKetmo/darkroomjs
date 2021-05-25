@@ -11,6 +11,11 @@ a {
   color: #0099CC;
 }
 
+a:hover {
+  text-decoration: underline;
+  color: #3474E0;
+}
+
 figure {
   margin: 0;
 }
@@ -44,7 +49,12 @@ figure {
 
 .copy h2 {
   font-size: 2.5em;
-  font-weight: 300;
+  font-weight: 400;
+}
+
+.copy .h2-bold {
+  padding-top: 15px;
+  font-weight: 700;
 }
 
 .copy pre {
@@ -138,7 +148,15 @@ h1 {
 
 .doka-gif img {
   display: block;
-  margin: 5px auto;
+  margin: 5px auto 10px;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-duration: .15s;
+  border-radius: 20px;
+}
+
+.doka-gif img:hover {
+  transform: scale(1.03);
 }
 
 .doka-gif {
