@@ -31,10 +31,34 @@
           to handle images in HTML5 canvas.
         </p>
 
-        <p class="warning">
-          This project is no longer maintained. Check the alternatives at
-          <strong><a href="#alternatives">the bottom of this page.</a></strong>
+        <h2>The next episode</h2>
+
+        <p>
+          Darkroom library has been discontinued and is <strong>no longer maintained</strong>.
+          If you're looking for an alternative, backed with a strong dev team, you should have a look at <strong><a href="https://gumroad.com/a/854594675" target="_blank" class="outbound-link">Doka Image Editor</a></strong>.
         </p>
+        <p>
+          Doka supports every DarkroomJS features and more (resizing, free rotating, color adjustment, photo filters, annotating, etc), with a more intuitive UI and touch friendly. Plus it can be integrated with any javascript solution.
+        </p>
+
+        <p class="doka-gif">
+          <a href="https://gumroad.com/a/854594675" class="outbound-link" target="_blank">
+            <img loading="lazy" width="600" height="602" style="background-color:#ccc;" src="./images/doka-image-editor-gh.gif" alt="Doka Image Editor demo preview">
+          </a>
+        </p>
+
+        <div class="btn-github-container">
+          <a class="btn-github outbound-link" target="_blank" href="https://gumroad.com/a/854594675">
+            Try Doka Editor ⇥
+          </a>
+        </div>
+
+        <p>
+          Features: Enforce crop aspect ratio. Fast image uploads. Rotate, resize and flip.
+          Overlay crop guides. Photo filter effects. Responsive and accessible.
+        </p>
+
+        <h2 id="alternatives" class="h2-bold">Previous demo</h2>
 
         <div class="figure-wrapper">
           <figure class="image-container target">
@@ -51,9 +75,9 @@
           </figure>
         </div>
 
-        <div class="btn-github-container">
-          <a class="btn-github outbound-link" href="https://github.com/MattKetmo/darkroomjs">View on Github</a>
-        </div>
+        <p>
+          <a target="_blank" class="outbound-link" href="https://github.com/MattKetmo/darkroomjs">View on Github</a>
+        </p>
 
         <h2>Why?</h2>
 
@@ -125,25 +149,6 @@
         <p></p>
         -->
 
-        <h2 id="alternatives" class="h2-bold">Alternative: Doka Image Editor</h2>
-
-        <p>
-          If you're looking for an alternative, you can have a look at <strong><a href="https://gumroad.com/a/854594675" class="outbound-link">Doka Image Editor</a></strong>.
-        </p>
-
-        <p>
-          It supports every DarkroomJS features and much more (like resizing, free rotating, color adjustment, photo filters, annotating, etc).
-          It's very powerful, with a more intuitive UI and can be integrated with any solution.
-        </p>
-
-        <p class="doka-gif">
-          <a href="https://gumroad.com/a/854594675" class="outbound-link">
-            <img loading="lazy" src="./images/doka-image-editor-gh.gif" alt="Doka Image Editor demo preview">
-          </a>
-
-          source: <a href="https://gumroad.com/a/854594675" class="outbound-link">Doka Image Editor</a>
-        </p>
-
         <h2>Contributing</h2>
 
         <p>
@@ -199,7 +204,7 @@
     function captureOutboundLink(url) {
       ga('send', 'event', 'outbound', 'click', url, {
         'transport': 'beacon',
-        'hitCallback': function(){document.location = url;}
+        // 'hitCallback': function(){document.location = url;}
       });
     }
 
