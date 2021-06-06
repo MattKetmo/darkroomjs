@@ -43,7 +43,7 @@
 
         <p class="doka-gif">
           <a href="https://gumroad.com/a/854594675" class="outbound-link" target="_blank">
-            <img loading="lazy" width="600" height="602" style="background-color:#ccc;" src="./images/doka-image-editor-gh.gif" alt="Doka Image Editor demo preview">
+            <img loading="lazy" width="600" height="602" id="doka-preview" style="background-color:#ccc;" src="./images/doka-image-editor-gh.jpg" data-src="./images/doka-image-editor-gh.gif" alt="Doka Image Editor demo preview">
           </a>
         </p>
 
@@ -213,6 +213,10 @@
         captureOutboundLink(el.getAttribute('href'))
       };
     })
+
+    var img = document.getElementById('doka-preview');
+    var newUrl = img.getAttribute('data-src')
+    img.src = newUrl
   </script>
 </body>
 </html>
