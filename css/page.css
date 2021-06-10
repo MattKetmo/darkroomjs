@@ -173,6 +173,8 @@ h1 {
 .doka-gif img {
   max-width: 100%;
   display: block;
+  width: auto;
+  height: auto;
   margin: 5px auto 10px;
   transition-property: all;
   transition-timing-function: cubic-bezier(.4,0,.2,1);
