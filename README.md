@@ -6,15 +6,21 @@ DarkroomJS is a JavaScript library which provides basic image editing tools in
 your browser, such as **rotation** or **cropping**. It is based on the awesome
 [FabricJS](http://fabricjs.com/) library to handle images in HTML5 canvas.
 
-## Demo
 
-Try the online demo at [http://mattketmo.github.io/darkroomjs](http://mattketmo.github.io/darkroomjs/)
+## UPDATE 2021
 
-## WARNING
+This library has been discontinued and is **no longer maintained**. If you're looking for an alternative, backed with a strong dev team (and used by big companies like Dropbox, Square, or ConvertKit), you should have a look at **[Pintura Image Editor](https://www.ktm.sh/pintura)**.
 
-**This library is no longer maintained**. If you're looking for an alternative you can check out **[Doka Image Editor](https://gumroad.com/a/854594675)**. It supports every DarkroomJS feature and much more (like resizing, free rotating, color adjustment, photo filters, annotating, etc).
+- framework agnostic
+- intuitive UI and mobile touch friendly
+- resizing / free rotating
+- color adjustment / photo filters
+- annotating support
+- and much more, try the online demo:
 
-[![Doka Image Editor demo](demo/images/doka-image-editor-gh.gif?raw=true "Doka Image Editor (click on the image to view)")](https://gumroad.com/a/854594675)
+[![Pintura Image Editor demo](demo/images/doka-image-editor-gh.gif?raw=true "Pintura Image Editor (click on the image to view)")](https://www.ktm.sh/pintura)
+
+[**[Demo] Try Pintura Image Editor →**](https://www.ktm.sh/pintura)
 
 ## Building
 
