@@ -16,7 +16,7 @@ var uglify = require('gulp-uglify')
 // Variables
 //
 var srcDir = './lib';
-var distDir = './build';
+var distDir = './demo/dist';
 var isDebug = !gutil.env.prod;
 
 //

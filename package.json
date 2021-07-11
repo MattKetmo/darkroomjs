@@ -16,7 +16,7 @@
     "gulp-connect": "^2.2.0",
     "gulp-inject": "^1.2.0",
     "gulp-plumber": "^1.0.1",
-    "gulp-sass": "^2.0.4",
+    "gulp-sass": "*",
     "gulp-sourcemaps": "^1.1.0",
     "gulp-svgmin": "^1.2.0",
     "gulp-svgstore": "^5.0.0",
