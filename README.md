@@ -1,15 +1,26 @@
 # DarkroomJS
 
-![Bower](https://img.shields.io/bower/v/darkroom.svg)
 ![License MIT](http://img.shields.io/badge/license-MIT-blue.svg)
 
 DarkroomJS is a JavaScript library which provides basic image editing tools in
 your browser, such as **rotation** or **cropping**. It is based on the awesome
 [FabricJS](http://fabricjs.com/) library to handle images in HTML5 canvas.
 
-## Demo
 
-Try the online demo at [http://mattketmo.github.io/darkroomjs](http://mattketmo.github.io/darkroomjs/)
+## UPDATE 2021
+
+This library has been discontinued and is **no longer maintained**. If you're looking for an alternative, backed with a strong dev team (and used by big companies like Dropbox, Square, or ConvertKit), you should have a look at **[Pintura Image Editor](https://www.ktm.sh/pintura)**.
+
+- framework agnostic
+- intuitive UI and mobile touch friendly
+- resizing / free rotating
+- color adjustment / photo filters
+- annotating support
+- and much more, try the online demo:
+
+[![Pintura Image Editor demo](demo/images/doka-image-editor-gh.gif?raw=true "Pintura Image Editor (click on the image to view)")](https://www.ktm.sh/pintura)
+
+[**[Demo] Try Pintura Image Editor →**](https://www.ktm.sh/pintura)
 
 ## Building
 
@@ -83,7 +94,7 @@ Run `npm develop` to build and watch the files while developing.
 
 How can I access the edited image?
 
-In order to get the edited image data, you must ask the canvas for it. By doing so inside the callback of your choice (in this case save), you can assign the edited image data to wherever you please. 
+In order to get the edited image data, you must ask the canvas for it. By doing so inside the callback of your choice (in this case save), you can assign the edited image data to wherever you please.
 
 ```javascript
 save: {
