@@ -7,16 +7,18 @@ your browser, such as **rotation** or **cropping**. It is based on the awesome
 [FabricJS](http://fabricjs.com/) library to handle images in HTML5 canvas.
 
 
-## UPDATE 2021
+## ⚠️ IMPORTANT UPDATE
 
-This library has been discontinued and is **no longer maintained**. If you're looking for an alternative, backed with a strong dev team (and used by big companies like Dropbox, Square, or ConvertKit), you should have a look at **[Pintura Image Editor](https://www.ktm.sh/pintura)**.
+This library has been discontinued and is **no longer maintained**.
+
+If you're looking for an alternative, you should have a look at **[Pintura Image Editor](https://www.ktm.sh/pintura)**.
 
 - framework agnostic
 - intuitive UI and mobile touch friendly
 - resizing / free rotating
 - color adjustment / photo filters
 - annotating support
-- and much more, try the online demo:
+- and much more, [try the online demo](https://www.ktm.sh/pintura):
 
 [![Pintura Image Editor demo](demo/images/doka-image-editor-gh.gif?raw=true "Pintura Image Editor (click on the image to view)")](https://www.ktm.sh/pintura)
 
