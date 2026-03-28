@@ -1,5 +1,27 @@
 /.sass-cache/
-/bower_components/
-/build/
 /node_modules/
+/build/
+/demo/build
 /docs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local env (secrets)
+.env
+.env.local
+.env.*.local
+
+# Tooling / test output
+.eslintcache
+coverage/
+/test-results/
+/playwright-report/

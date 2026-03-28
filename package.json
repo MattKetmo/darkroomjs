@@ -1,38 +1,70 @@
 {
-  "name": "darkroom",
-  "description": "Extensible image editing tool via HTML canvas",
-  "version": "2.0.0",
+  "name": "imgtor",
+  "description": "Extensible image editing tool via HTML canvas (fork of DarkroomJS)",
+  "version": "3.1.0",
   "license": "MIT",
-  "homepage": "https://mattketmo.github.io/darkroomjs",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "homepage": "https://github.com/ai-tonia/imgtorjs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mattketmo/darkroomjs.git"
+    "url": "https://github.com/ai-tonia/imgtorjs.git"
   },
   "author": "Matthieu Moquet <matthieu@moquet.net> (http://moquet.net/)",
+  "main": "./build/darkroom.js",
+  "style": "./build/darkroom.css",
+  "types": "./types/darkroom.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/darkroom.d.ts",
+      "default": "./build/darkroom.js"
+    },
+    "./darkroom.js": "./build/darkroom.js",
+    "./darkroom.css": "./build/darkroom.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "build/darkroom.js",
+    "build/darkroom.css",
+    "types/darkroom.d.ts",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md"
+  ],
   "dependencies": {},
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-connect": "^2.2.0",
-    "gulp-inject": "^1.2.0",
-    "gulp-plumber": "^1.0.1",
-    "gulp-sass": "^5.1.0",
-    "gulp-sourcemaps": "^1.1.0",
-    "gulp-svgmin": "^1.2.0",
-    "gulp-svgstore": "^5.0.0",
-    "gulp-uglify": "^1.4.1",
-    "rimraf": "^2.2.8",
-    "sass": "^1.77.0"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0",
+    "prettier": "^3.8.1",
+    "sass": "^1.98.0",
+    "vite": "^8.0.3",
+    "vitest": "^4.1.2",
+    "@playwright/test": "^1.51.0"
   },
   "scripts": {
-    "build": "gulp build",
-    "build:prod": "NODE_ENV=production gulp build",
-    "start": "NODE_ENV=production gulp build && gulp server",
-    "develop": "gulp"
+    "build:js": "vite build",
+    "build:css": "sass lib/css/darkroom.scss build/darkroom.css --style=compressed --no-source-map",
+    "build": "npm run build:js && npm run build:css",
+    "sync:demo": "node scripts/sync-demo-build.mjs",
+    "prepublishOnly": "npm run build",
+    "dev": "vite build --watch & sass --watch lib/css/darkroom.scss:build/darkroom.css --style=expanded",
+    "develop": "npm run dev",
+    "preview": "vite --config vite.demo.config.js",
+    "start": "npm run build && npm run sync:demo && vite --config vite.demo.config.js",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run build && vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:e2e": "playwright test",
+    "audit": "npm audit"
   },
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components"
+    "node_modules"
   ]
 }

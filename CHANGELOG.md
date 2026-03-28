@@ -4,7 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-- Add type "button" to avoid html5 submit validation (#24)
+## 3.1.0 (2026-03-28)
+
+- Add **SECURITY.md** (responsible disclosure) and **RELEASING.md** (maintainer checklist)
+- Add **Playwright** demo smoke test (`npm run test:e2e`) and run it in CI with Chromium
+- Publish **SECURITY.md** in the npm package `files` list for discoverability
+
+## 3.0.0 (2026-03-28)
+
+- **Breaking (fork):** npm **`imgtor`** v3 — ImgTor modernization (Node 22+, Vite, Vitest, GitHub Actions CI)
+- TypeScript **ambient types** for global `Darkroom` (`types/darkroom.d.ts`); **`exports`** and **`types`** in `package.json`
+- **Dependabot** weekly npm updates (grouped devDependencies)
+- Demo and docs: ImgTor / **ai-tonia/imgtorjs**; README CI badge and `npm install imgtor`
+- npm **`main`**, **`style`**, **`files`**, **`prepublishOnly`** for publishing built assets
+- **`sync:demo`**: copy `build/` → `demo/build/` (no symlink)
+- Remove **Bower**; shared **`extendObject`** and viewport math with unit tests
+- Modern DOM APIs (`addEventListener` / `Event`)
+- Add type **button** to avoid HTML5 submit validation (#24)
 
 ## 2.0.0 (2015-08-01)
 
