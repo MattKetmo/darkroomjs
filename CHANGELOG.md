@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 3.1.2 (2026-03-28)
+
+- **npm:** `keywords` and `bugs` URL for discoverability
+- **e2e:** Playwright **`demo.toolbar.spec.js`** — toolbar visible, four button groups, eight visible buttons (demo enables crop focus on load)
+
 ## 3.1.1 (2026-03-28)
 
 - Include **RELEASING.md** in the npm package `files` list (next to SECURITY.md)

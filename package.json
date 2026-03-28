@@ -1,7 +1,7 @@
 {
   "name": "imgtor",
   "description": "Extensible image editing tool via HTML canvas (fork of DarkroomJS)",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "license": "MIT",
   "type": "module",
   "engines": {
@@ -12,6 +12,19 @@
     "type": "git",
     "url": "https://github.com/ai-tonia/imgtorjs.git"
   },
+  "bugs": {
+    "url": "https://github.com/ai-tonia/imgtorjs/issues"
+  },
+  "keywords": [
+    "canvas",
+    "crop",
+    "darkroom",
+    "fabric",
+    "image",
+    "image-editor",
+    "imgtor",
+    "rotate"
+  ],
   "author": "Matthieu Moquet <matthieu@moquet.net> (http://moquet.net/)",
   "main": "./build/darkroom.js",
   "style": "./build/darkroom.css",
