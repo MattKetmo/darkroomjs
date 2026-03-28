@@ -1,109 +1,98 @@
-var concat = require('gulp-concat')
-var connect = require('gulp-connect')
-var gulp = require('gulp')
-var gutil = require('gulp-util')
-var inject = require('gulp-inject')
-var plumber = require('gulp-plumber')
-var rimraf = require('rimraf')
-var sass = require('gulp-sass')
-var sourcemaps = require('gulp-sourcemaps')
-var svgmin = require('gulp-svgmin')
-var svgstore = require('gulp-svgstore')
-var uglify = require('gulp-uglify')
+const concat = require('gulp-concat')
+const connect = require('gulp-connect')
+const gulp = require('gulp')
+const { series, parallel } = require('gulp')
+const inject = require('gulp-inject')
+const plumber = require('gulp-plumber')
+const rimraf = require('rimraf')
+const gulpSass = require('gulp-sass')
+const dartSass = require('sass')
+const sass = gulpSass(dartSass)
+const sourcemaps = require('gulp-sourcemaps')
+const svgmin = require('gulp-svgmin')
+const svgstore = require('gulp-svgstore')
+const uglify = require('gulp-uglify')
+const { PassThrough } = require('stream')
 
+const srcDir = './lib'
+const distDir = './build'
 
-//
-// Variables
-//
-var srcDir = './lib';
-var distDir = './build';
-var isDebug = !gutil.env.prod;
+function debugMode() {
+  return process.env.NODE_ENV !== 'production' && !process.argv.includes('--prod')
+}
 
-//
-// Default
-//
-gulp.task('default', ['build'], function() {
-  gulp.start('watch');
-});
+function noop() {
+  return new PassThrough({ objectMode: true })
+}
 
-//
-// Clean
-//
-gulp.task('clean', function(cb) {
-  rimraf(distDir, cb);
-});
+function clean(cb) {
+  rimraf(distDir, cb)
+}
 
-//
-// Build
-//
-gulp.task('build', ['clean'], function() {
-  gulp.start('scripts', 'styles');
-});
+function scripts() {
+  const isDebug = debugMode()
+  const svgs = gulp.src(`${srcDir}/icons/*.svg`)
+    .pipe(svgmin())
+    .pipe(svgstore({ inlineSvg: true }))
 
-//
-// Watch
-//
-gulp.task('watch', ['server'], function() {
-  gulp.watch(srcDir + '/js/**/*.js', ['scripts']);
+  function fileContents(filePath, file) {
+    return file.contents.toString()
+  }
 
-  gulp.watch(srcDir + '/css/**/*.scss', ['styles']);
-});
+  const files = [
+    `${srcDir}/js/core/bootstrap.js`,
+    `${srcDir}/js/core/darkroom.js`,
+    `${srcDir}/js/core/*.js`,
+    `${srcDir}/js/plugins/darkroom.history.js`,
+    `${srcDir}/js/plugins/darkroom.rotate.js`,
+    `${srcDir}/js/plugins/darkroom.crop.js`,
+    `${srcDir}/js/plugins/darkroom.save.js`,
+  ]
 
-//
-// Server
-//
-gulp.task('server', function() {
+  return gulp.src(files)
+    .pipe(plumber())
+    .pipe(isDebug ? sourcemaps.init() : noop())
+    .pipe(concat('darkroom.js', { newLine: ';' }))
+    .pipe(inject(svgs, { transform: fileContents }))
+    .pipe(isDebug ? noop() : uglify({ mangle: false }))
+    .pipe(isDebug ? sourcemaps.write() : noop())
+    .pipe(gulp.dest(distDir))
+}
+
+function styles() {
+  const isDebug = debugMode()
+  return gulp.src(`${srcDir}/css/darkroom.scss`)
+    .pipe(plumber())
+    .pipe(isDebug ? sourcemaps.init() : noop())
+    .pipe(sass({
+      style: isDebug ? 'expanded' : 'compressed',
+      silenceDeprecations: ['legacy-js-api'],
+    }).on('error', sass.logError))
+    .pipe(isDebug ? sourcemaps.write() : noop())
+    .pipe(gulp.dest(distDir))
+}
+
+function server(done) {
   connect.server({
     root: './demo',
     port: 2222,
-    livereload: false
-  });
-});
+    livereload: false,
+  })
+  done()
+}
 
-//
-// Javascript
-//
-gulp.task('scripts', function () {
-  var svgs = gulp.src(srcDir + '/icons/*.svg')
-    .pipe(svgmin())
-    .pipe(svgstore({inlineSvg: true}))
-    // .pipe(gulp.dest(distDir));
+function watchFiles() {
+  gulp.watch(`${srcDir}/js/**/*.js`, scripts)
+  gulp.watch(`${srcDir}/css/**/*.scss`, styles)
+  return Promise.resolve()
+}
 
-  function fileContents (filePath, file) {
-    return file.contents.toString();
-  }
+const build = series(clean, parallel(scripts, styles))
 
-  var files = [
-    srcDir + '/js/core/bootstrap.js',
-    srcDir + '/js/core/darkroom.js',
-    srcDir + '/js/core/*.js',
-    // srcDir + '/js/plugins/*.js',
-    srcDir + '/js/plugins/darkroom.history.js',
-    srcDir + '/js/plugins/darkroom.rotate.js',
-    srcDir + '/js/plugins/darkroom.crop.js',
-    srcDir + '/js/plugins/darkroom.save.js',
-  ];
-
-  gulp.src(files)
-    .pipe(plumber())
-    .pipe(isDebug ? sourcemaps.init() : gutil.noop())
-      .pipe(concat('darkroom.js', {newLine: ';'}))
-      .pipe(inject(svgs, { transform: fileContents }))
-      .pipe(isDebug ? gutil.noop() : uglify({mangle: false}))
-    .pipe(isDebug ? sourcemaps.write() : gutil.noop())
-    .pipe(gulp.dest(distDir))
-})
-
-//
-// Stylesheet
-//
-gulp.task('styles', function () {
-  gulp.src(srcDir + '/css/darkroom.scss')
-    .pipe(plumber())
-    .pipe(isDebug ? sourcemaps.init() : gutil.noop())
-      .pipe(sass({
-        outputStyle: isDebug ? 'nested' : 'compressed'
-      }))
-    .pipe(isDebug ? sourcemaps.write() : gutil.noop())
-    .pipe(gulp.dest(distDir))
-})
+exports.scripts = scripts
+exports.styles = styles
+exports.clean = clean
+exports.build = build
+exports.server = server
+exports.watch = series(server, watchFiles)
+exports.default = series(build, exports.watch)
