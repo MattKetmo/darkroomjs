@@ -57,7 +57,8 @@
     "sass": "^1.98.0",
     "vite": "^8.0.3",
     "vitest": "^4.1.2",
-    "@playwright/test": "^1.51.0"
+    "@playwright/test": "^1.51.0",
+    "@vitest/coverage-v8": "^4.1.2"
   },
   "scripts": {
     "build:js": "vite build",
@@ -74,6 +75,7 @@
     "format:check": "prettier --check .",
     "test": "npm run build && vitest run",
     "test:unit": "vitest run tests/unit",
+    "test:coverage": "npm run build && vitest run --coverage",
     "test:e2e": "playwright test",
     "audit": "npm audit"
   },

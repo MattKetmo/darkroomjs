@@ -2,7 +2,6 @@
 /node_modules/
 /build/
 /demo/build
-/docs/
 
 # OS
 .DS_Store

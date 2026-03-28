@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "imgtorjs MCP resource catalog",
+  "description": "Expose these repo-relative paths as MCP resources for agents. URIs are suggestions only—bind them in your MCP server or client.",
+  "resources": [
+    {
+      "id": "imgtorjs/handbook",
+      "title": "Agent handbook",
+      "path": "docs/mcp/imgtorjs-agent-handbook.md"
+    },
+    {
+      "id": "imgtorjs/features",
+      "title": "Feature & plugin catalogue",
+      "path": "docs/FEATURES.md"
+    },
+    {
+      "id": "imgtorjs/readme",
+      "title": "Project README",
+      "path": "README.md"
+    },
+    {
+      "id": "imgtorjs/migration-chain",
+      "title": "Migration PR chain & sub-agent prompts",
+      "path": "docs/migration-subagents.md"
+    },
+    {
+      "id": "imgtorjs/mcp-index",
+      "title": "MCP folder index",
+      "path": "docs/mcp/README.md"
+    },
+    {
+      "id": "imgtorjs/cursor-wiring",
+      "title": "Cursor / MCP wiring notes",
+      "path": "docs/mcp/CURSOR.md"
+    }
+  ]
+}
