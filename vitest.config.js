@@ -9,5 +9,20 @@ export default defineConfig({
   test: {
     environment: 'node',
     include: ['tests/**/*.test.js'],
+    coverage: {
+      provider: 'v8',
+      include: ['lib/js/**/*.js', 'lib/entry-darkroom.js'],
+      all: true,
+      reporter: ['text', 'json-summary', 'html', 'lcov'],
+      reportsDirectory: './coverage',
+      // Baseline while most of lib/ is untested. Raise toward 80% lines / 70% branches
+      // as the suite grows (see docs/migration/parallel-subagents-and-pr-stack.md).
+      thresholds: {
+        lines: 1,
+        branches: 2,
+        statements: 1,
+        functions: 2,
+      },
+    },
   },
 });
