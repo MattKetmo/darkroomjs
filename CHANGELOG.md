@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 3.1.1 (2026-03-28)
+
+- Include **RELEASING.md** in the npm package `files` list (next to SECURITY.md)
+
 ## 3.1.0 (2026-03-28)
 
 - Add **SECURITY.md** (responsible disclosure) and **RELEASING.md** (maintainer checklist)
